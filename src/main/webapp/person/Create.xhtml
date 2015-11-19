@@ -31,19 +31,19 @@
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_temporary_address}" for="temporary_address" />
                                 <p:inputText id="temporary_address" value="#{personController.selected.temporary_address}" title="#{bundle.CreatePersonTitle_temporary_address}" />
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_gender}" for="gender" />
-                                <p:selectOneMenu id="gender"
+                                <p:selectOneMenu id="gender" rendered="#{personController.selected.gender ne null}"
                                                  value="#{personController.selected.gender}"  >
                                     <f:selectItem itemLabel="Select Gender" ></f:selectItem>
-                                    <f:selectItems itemLabel="#{enumController.genders}" ></f:selectItems>
+                                    <f:selectItems value="#{enumController.genders}" ></f:selectItems>
                                 </p:selectOneMenu>
 
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_birth}" for="date_of_birth" />
                                 <p:calendar id="date_of_birth" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_birth}" title="#{bundle.EditPersonTitle_date_of_birth}"  showOn="button"/>
 
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_civil_status}" for="civil_status" />
-                                <p:selectOneMenu id="civil_status" value="#{personController.selected.civil_status}" >
+                                <p:selectOneMenu id="civil_status" value="#{personController.selected.civil_status}" rendered="#{personController.selected.gender ne null}">
                                     <f:selectItem itemLabel="Select Civil Status" ></f:selectItem>
-                                    <f:selectItems itemLabel="#{enumController.genders}" ></f:selectItems>
+                                    <f:selectItems value="#{enumController.genders}" ></f:selectItems>
                                 </p:selectOneMenu>
 
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_telephone}" for="telephone" />
@@ -75,13 +75,13 @@
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_grade_III}" for="date_of_appointment_to_grade_III" />
                                 <p:calendar id="date_of_appointment_to_grade_III" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_appointment_to_grade_III}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_III}"  showOn="button"/>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_institution}" for="institution" />
-                                <p:selectOneMenu id="institution" value="#{personController.selected.institution}" >
+                                <p:selectOneMenu id="institution" value="#{personController.selected.institution}" rendered="#{personController.selected.gender ne null}">
                                     <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
                                                    var="institutionItem"
                                                    itemValue="#{institutionItem}"/>
                                 </p:selectOneMenu>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_department}" for="department" />
-                                <p:selectOneMenu id="department" value="#{personController.selected.department}" >
+                                <p:selectOneMenu id="department" value="#{personController.selected.department}" rendered="#{personController.selected.gender ne null}">
                                     <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
                                                    var="departmentItem"
                                                    itemValue="#{departmentItem}"/>
@@ -109,7 +109,7 @@
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_current_institution}" for="date_of_current_institution" />
                                 <p:calendar id="date_of_current_institution" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_current_institution}" title="#{bundle.EditPersonTitle_date_of_current_institution}"  showOn="button"/>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_previous_Institution}" for="previous_Institution" />
-                                <p:selectOneMenu id="previous_Institution" value="#{personController.selected.previous_Institution}" >
+                                <p:selectOneMenu id="previous_Institution" value="#{personController.selected.previous_Institution}" rendered="#{personController.selected.gender ne null}">
                                     <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
                                                    var="previous_InstitutionItem"
                                                    itemValue="#{previous_InstitutionItem}"/>
@@ -125,7 +125,7 @@
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_trasnfer}" for="date_of_trasnfer" />
                                 <p:calendar id="date_of_trasnfer" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_trasnfer}" title="#{bundle.EditPersonTitle_date_of_trasnfer}"  showOn="button"/>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_transfer_institution}" for="transfer_institution" />
-                                <p:selectOneMenu id="transfer_institution" value="#{personController.selected.transfer_institution}" >
+                                <p:selectOneMenu id="transfer_institution" value="#{personController.selected.transfer_institution}" rendered="#{personController.selected.gender ne null}">
                                     <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
                                                    var="transfer_institutionItem"
                                                    itemValue="#{transfer_institutionItem}"/>

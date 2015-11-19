@@ -29,10 +29,17 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListWebUserTitle_id}"/>
+                                <h:outputText value="User Name"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                            <h:outputText value="#{item.userName}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Institution"/>
+                            </f:facet>
+                            <h:outputText value="#{item.institution.name}"/>
+                        </p:column>
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{webUserController.prepareCreate}" update=":WebUserCreateForm" oncomplete="PF('WebUserCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":WebUserViewForm" oncomplete="PF('WebUserViewDialog').show()" disabled="#{empty webUserController.selected}"/>

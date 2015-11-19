@@ -11,9 +11,18 @@
         <p:dialog id="WebUserEditDlg" widgetVar="WebUserEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditWebUserTitle}">
             <h:form id="WebUserEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{webUserController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditWebUserLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{webUserController.selected.id}" title="#{bundle.EditWebUserTitle_id}" />
+                     <p:panelGrid columns="2" rendered="#{webUserController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateWebUserLabel_id}" for="txtUn" />
+                        <p:inputText id="txtUn" value="#{webUserController.selected.userName}" />
+                        <p:outputLabel value="#{bundle.CreateWebUserLabel_id}" for="txtPw" />
+                        <p:inputText id="txtPw" value="#{webUserController.selected.password}"  />
+                        <p:outputLabel value="#{bundle.CreateWebUserLabel_id}" for="cmbIns" />
+                        <p:selectOneMenu id="cmbIns" value="#{webUserController.selected.institution}" >
+                            <f:selectItem itemLabel="Select Institution" ></f:selectItem>
+                            <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
+                                           var="parentInstitutionItem"
+                                           itemValue="#{parentInstitutionItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{webUserController.update}" value="#{bundle.Save}" update="display,:WebUserListForm:datalist,:growl" oncomplete="handleSubmit(args, 'WebUserEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="WebUserEditDialog.hide()"/>

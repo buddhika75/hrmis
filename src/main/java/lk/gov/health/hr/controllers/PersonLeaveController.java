@@ -6,7 +6,10 @@ import lk.gov.health.hr.controllers.util.JsfUtil.PersistAction;
 import lk.gov.health.hr.facelets.PersonLeaveFacade;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +21,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import lk.gov.health.hr.entity.Institution;
+import lk.gov.health.hr.entity.Person;
+import lk.gov.health.hr.java.Functions;
 
 @ManagedBean(name = "personLeaveController")
 @SessionScoped
@@ -27,6 +33,48 @@ public class PersonLeaveController implements Serializable {
     private lk.gov.health.hr.facelets.PersonLeaveFacade ejbFacade;
     private List<PersonLeave> items = null;
     private PersonLeave selected;
+
+    Person person;
+    Institution institution;
+    Date fromDate;
+    Date toDate;
+
+    public void listPersonLeaves() {
+        String j;
+        j = "select pl "
+                + " from PersonLeave pl "
+                + " where pl.retired=false "
+                + " and pl.person=:p "
+                + " and ((pl.fromDate < :fd and pl.toDate > :fd) or (pl.fromDate < :fd and pl.toDate > :td)) "
+                + " order by pl.fromDate";
+        Map m = new HashMap();
+        m.put("p", person);
+        m.put("fd", fromDate);
+        m.put("td", toDate);
+        items = ejbFacade.findBySQL(j, m);
+    }
+
+    public Date getFromDate() {
+        if (fromDate == null) {
+            fromDate = Functions.firstDateOfYear();
+        }
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        if (toDate == null) {
+            toDate = Functions.lastDateOfYear();
+        }
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
 
     public PersonLeaveController() {
     }
@@ -51,6 +99,7 @@ public class PersonLeaveController implements Serializable {
 
     public PersonLeave prepareCreate() {
         selected = new PersonLeave();
+        selected.setPerson(person);
         initializeEmbeddableKey();
         return selected;
     }
@@ -115,6 +164,22 @@ public class PersonLeaveController implements Serializable {
 
     public List<PersonLeave> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Institution getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
     }
 
     @FacesConverter(forClass = PersonLeave.class)

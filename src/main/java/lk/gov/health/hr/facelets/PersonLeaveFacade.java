@@ -28,4 +28,5 @@ public class PersonLeaveFacade extends AbstractFacade<PersonLeave> {
         super(PersonLeave.class);
     }
     
+    
 }

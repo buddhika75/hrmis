@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
 import lk.gov.health.hr.enums.CivilStatus;
 import lk.gov.health.hr.enums.Gender;
+import lk.gov.health.hr.enums.InstitutionType;
+import lk.gov.health.hr.enums.LeaveType;
 
 /**
  *
@@ -30,6 +32,14 @@ public class EnumController {
     
     public CivilStatus[] getCivilStatuses(){
         return CivilStatus.values();
+    }
+    
+    public InstitutionType[] getInstitutionTypes(){
+        return InstitutionType.values();
+    }
+    
+    public LeaveType[] getLeaveTypes(){
+        return LeaveType.values();
     }
     
 }

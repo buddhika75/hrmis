@@ -6,7 +6,9 @@ import lk.gov.health.hr.controllers.util.JsfUtil.PersistAction;
 import lk.gov.health.hr.facelets.WebUserFacade;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import lk.gov.health.hr.entity.Institution;
 
 @ManagedBean(name = "webUserController")
 @SessionScoped
@@ -28,6 +31,89 @@ public class WebUserController implements Serializable {
     private List<WebUser> items = null;
     private WebUser selected;
 
+    boolean logged;
+    WebUser loggedUser;
+    Institution loggedInstitution;
+    String userName;
+    String password;
+
+    public void logOut(){
+        logged=false;
+        loggedInstitution = null;
+        loggedUser = null;
+    }
+    
+    public void login() {
+        int count = getFacade().count();
+        if (count < 2) {
+            logged = true;
+            return;
+        }
+        String jpql = "Select wu from WebUser wu where "
+                + " wu.retired=false "
+                + " and lower(wu.userName)=:un "
+                + " and wu.password=:pw";
+        Map m = new HashMap();
+        m.put("un", userName.toLowerCase());
+        m.put("pw", password);
+        WebUser wu = getFacade().findFirstBySQL(jpql,m);
+        userName = "";
+        password = "";
+        if(wu==null){
+            logged=false;
+            loggedInstitution = null;
+            loggedUser = null;
+            JsfUtil.addErrorMessage("Wrong Details. Please retry.");
+        }else{
+            logged = true;
+            loggedInstitution = wu.getInstitution();
+            loggedUser = wu;
+        }
+        
+    }
+
+    public boolean isLogged() {
+        return logged;
+    }
+
+    public void setLogged(boolean logged) {
+        this.logged = logged;
+    }
+
+    public WebUser getLoggedUser() {
+        return loggedUser;
+    }
+
+    public void setLoggedUser(WebUser loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    public Institution getLoggedInstitution() {
+        return loggedInstitution;
+    }
+
+    public void setLoggedInstitution(Institution loggedInstitution) {
+        this.loggedInstitution = loggedInstitution;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
+    
     public WebUserController() {
     }
 

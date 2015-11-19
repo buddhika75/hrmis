@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import lk.gov.health.hr.enums.LeaveType;
+import lk.gov.health.hr.java.Functions;
 
 /**
  *
@@ -31,6 +32,11 @@ public class PersonLeave implements Serializable {
     LeaveType type;
     boolean foreign_leave;
     double remaining_leaves;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date fromDate;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date toDate;
+    double leaveQuentity;
 
     //Create
     @ManyToOne
@@ -50,6 +56,111 @@ public class PersonLeave implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getFromDate() {
+        if (fromDate == null) {
+            new Date();
+        }
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        if (toDate == null) {
+            new Date();
+        }
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
+
+    public double getLeaveQuentity() {
+        if (leaveQuentity == 0) {
+            leaveQuentity = 1;
+        }
+        return leaveQuentity;
+    }
+
+    public void setLeaveQuentity(double leaveQuentity) {
+        this.leaveQuentity = leaveQuentity;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public LeaveType getType() {
+        return type;
+    }
+
+    public void setType(LeaveType type) {
+        this.type = type;
+    }
+
+    public boolean isForeign_leave() {
+        return foreign_leave;
+    }
+
+    public void setForeign_leave(boolean foreign_leave) {
+        this.foreign_leave = foreign_leave;
+    }
+
+    public double getRemaining_leaves() {
+        return remaining_leaves;
+    }
+
+    public void setRemaining_leaves(double remaining_leaves) {
+        this.remaining_leaves = remaining_leaves;
+    }
+
+    public WebUser getCreater() {
+        return creater;
+    }
+
+    public void setCreater(WebUser creater) {
+        this.creater = creater;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public boolean isRetired() {
+        return retired;
+    }
+
+    public void setRetired(boolean retired) {
+        this.retired = retired;
+    }
+
+    public WebUser getRetirer() {
+        return retirer;
+    }
+
+    public void setRetirer(WebUser retirer) {
+        this.retirer = retirer;
+    }
+
+    public Date getRetiredAt() {
+        return retiredAt;
+    }
+
+    public void setRetiredAt(Date retiredAt) {
+        this.retiredAt = retiredAt;
     }
 
     @Override

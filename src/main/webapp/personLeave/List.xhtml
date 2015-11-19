@@ -15,6 +15,22 @@
 
         <ui:define name="body">
             <h:form id="PersonLeaveListForm">
+                <p:panelGrid columns="2" >
+                    <h:outputText value="Employee" ></h:outputText>
+                    <p:selectOneMenu value="#{personLeaveController.person}" >
+                        <f:selectItem itemLabel="Select Employee" ></f:selectItem>
+                        <f:selectItems value="#{personController.itemsAvailableSelectOne}" ></f:selectItems>
+                        <f:ajax execute="@this calFd calTd" render="datalist"  listener="#{personLeaveController.listPersonLeaves()}" ></f:ajax>
+                    </p:selectOneMenu>
+                    
+                    <h:outputText value="From" ></h:outputText>
+                    <p:calendar id="calFd" value="#{personLeaveController.fromDate}" pattern="dd MMMM yyyy" ></p:calendar>
+
+                    <h:outputText value="To" ></h:outputText>
+                    <p:calendar id="calTd" value="#{personLeaveController.toDate}" pattern="dd MMMM yyyy" ></p:calendar>
+                    
+                </p:panelGrid>
+
                 <p:panel header="#{bundle.ListPersonLeaveTitle}">
                     <p:dataTable id="datalist" value="#{personLeaveController.items}" var="item"
                                  selectionMode="single" selection="#{personLeaveController.selected}"

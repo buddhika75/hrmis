@@ -11,9 +11,14 @@
         <p:dialog id="WebUserViewDlg" widgetVar="WebUserViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewWebUserTitle}">
             <h:form id="WebUserViewForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{webUserController.selected != null}">
-                        <h:outputText value="#{bundle.ViewWebUserLabel_id}"/>
-                        <h:outputText value="#{webUserController.selected.id}" title="#{bundle.ViewWebUserTitle_id}"/>
+                     <p:panelGrid columns="2" rendered="#{webUserController.selected != null}">
+                        <p:outputLabel value="User Name" for="txtUn" />
+                        <p:outputLabel id="txtUn" value="#{webUserController.selected.userName}"  />
+                        <p:outputLabel value="Password" for="txtPw" />
+                        <p:outputLabel id="txtPw" value="#{webUserController.selected.password}"  />
+                        <p:outputLabel value="Institution"  />
+                        <p:outputLabel id="cmbIns" value="#{webUserController.selected.institution}" >
+                        </p:outputLabel>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="WebUserViewDialog.hide()"/>
                 </h:panelGroup>

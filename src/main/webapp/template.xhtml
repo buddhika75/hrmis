@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title>Human Resource Management Information System</title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
@@ -17,23 +18,32 @@
 
         <p:layout fullPage="true">
             <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+
+
                 <h:form id="menuForm">
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:submenu label="Functions">
+                            <p:menuitem value="Employee Leave" action="/personLeave/List" actionListener="#{personLeaveController.listPersonLeaves()}" />
+                        </p:submenu>
                         <p:submenu label="#{bundle.Maintenance}">
                             <p:menuitem value="Person" outcome="/person/List.xhtml" />
                             <p:menuitem value="Institution" outcome="/institution/List.xhtml" />
-                            <p:menuitem value="PersonLeave" outcome="/personLeave/List.xhtml" />
+                            <p:menuitem value="Leave" outcome="/personLeave/List.xhtml" />
 
                             <p:menuitem value="Increment" outcome="/increment/List.xhtml" />
                             <p:menuitem value="InstitutionCadre" outcome="/institutionCadre/List.xhtml" />
                             <p:menuitem value="Item" outcome="/item/List.xhtml" />
 
 
-                            <p:menuitem value="WebUser" outcome="/webUser/List.xhtml" />
+                            <p:menuitem value="Users" outcome="/webUser/List.xhtml" />
                         </p:submenu>
+                        <f:facet name="options">
+                            <p:commandButton value="Logout" icon="ui-icon-extlink" action="#{webUserController.logOut()}" ajax="false" />
+                        </f:facet>
                     </p:menubar>
                 </h:form>
+
             </p:layoutUnit>
 
             <p:layoutUnit position="south" size="60">
@@ -41,7 +51,40 @@
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
-                <ui:insert name="body"/>
+
+                <h:panelGroup rendered="#{webUserController.logged}" >
+                    <ui:insert name="body"/>
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{!webUserController.logged}" >
+
+                    <p:panel header="Please login" >
+
+                        <h:form >
+
+                            <h:panelGrid columns="3" >
+                                <h:outputText value="Username" >
+                                </h:outputText>
+                                <p:spacer width="20" height="1" ></p:spacer>
+                                <h:inputText value="#{webUserController.userName}" ></h:inputText>
+
+                                <h:outputText value="Password" >
+                                </h:outputText>
+                                <p:spacer width="20" height="1" ></p:spacer>
+                                <h:inputText value="#{webUserController.password}" ></h:inputText>
+
+                                <p:spacer width="20" height="1" ></p:spacer>
+                                <p:spacer width="20" height="1" ></p:spacer>
+                                <p:commandButton ajax="false" value="Login" action="#{webUserController.login()}" ></p:commandButton>
+
+                            </h:panelGrid>
+
+                        </h:form>
+                    </p:panel>
+
+
+                </h:panelGroup>
+
             </p:layoutUnit>
 
         </p:layout>

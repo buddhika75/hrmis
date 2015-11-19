@@ -7,8 +7,10 @@
         <property name="databaseName" value="hrmis"/>
         <property name="User" value="root"/>
         <property name="Password" value="pdhs123@"/>
-        <property name="URL" value="jdbc:mysql://localhost:3306/hrmis?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="URL" value="jdbc:mysql://localhost:3306/hrmis?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="connection.useUnicode">true</property>
+        <property name="connection.characterEncoding">utf-8</property>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="dsHrmis1" object-type="user" pool-name="mysql_hrmis_rootPool"/>
 </resources>
