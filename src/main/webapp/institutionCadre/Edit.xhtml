@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InstitutionCadreEditDlg" widgetVar="InstitutionCadreEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditInstitutionCadreTitle}">
+            <h:form id="InstitutionCadreEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{institutionCadreController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_cadreDate}" for="cadreDate" />
+                        <p:calendar id="cadreDate" pattern="MM/dd/yyyy" value="#{institutionCadreController.selected.cadreDate}" title="#{bundle.EditInstitutionCadreTitle_cadreDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_institution}" for="institution" />
+                        <p:selectOneMenu id="institution" value="#{institutionCadreController.selected.institution}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
+                                           var="institutionItem"
+                                           itemValue="#{institutionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_position}" for="position" />
+                        <p:selectOneMenu id="position" value="#{institutionCadreController.selected.position}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{itemController.itemsAvailableSelectOne}"
+                                           var="positionItem"
+                                           itemValue="#{positionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_approved}" for="approved" />
+                        <p:inputText id="approved" value="#{institutionCadreController.selected.approved}" title="#{bundle.EditInstitutionCadreTitle_approved}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_male_in}" for="male_in" />
+                        <p:inputText id="male_in" value="#{institutionCadreController.selected.male_in}" title="#{bundle.EditInstitutionCadreTitle_male_in}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_female_in}" for="female_in" />
+                        <p:inputText id="female_in" value="#{institutionCadreController.selected.female_in}" title="#{bundle.EditInstitutionCadreTitle_female_in}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_total_in}" for="total_in" />
+                        <p:inputText id="total_in" value="#{institutionCadreController.selected.total_in}" title="#{bundle.EditInstitutionCadreTitle_total_in}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_vacant}" for="vacant" />
+                        <p:inputText id="vacant" value="#{institutionCadreController.selected.vacant}" title="#{bundle.EditInstitutionCadreTitle_vacant}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_creater}" for="creater" />
+                        <p:selectOneMenu id="creater" value="#{institutionCadreController.selected.creater}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="createrItem"
+                                           itemValue="#{createrItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{institutionCadreController.selected.createdAt}" title="#{bundle.EditInstitutionCadreTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_retirer}" for="retirer" />
+                        <p:selectOneMenu id="retirer" value="#{institutionCadreController.selected.retirer}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="retirerItem"
+                                           itemValue="#{retirerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_retiredAt}" for="retiredAt" />
+                        <p:calendar id="retiredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{institutionCadreController.selected.retiredAt}" title="#{bundle.EditInstitutionCadreTitle_retiredAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInstitutionCadreLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{institutionCadreController.selected.id}" title="#{bundle.EditInstitutionCadreTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{institutionCadreController.update}" value="#{bundle.Save}" update="display,:InstitutionCadreListForm:datalist,:growl" oncomplete="handleSubmit(args, 'InstitutionCadreEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InstitutionCadreEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

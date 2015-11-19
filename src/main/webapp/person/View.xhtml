@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonViewDlg" widgetVar="PersonViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPersonTitle}">
+            <h:form id="PersonViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPersonLabel_id}"/>
+                        <h:outputText value="#{personController.selected.id}" title="#{bundle.ViewPersonTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_name}"/>
+                        <h:outputText value="#{personController.selected.name}" title="#{bundle.ViewPersonTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_nic}"/>
+                        <h:outputText value="#{personController.selected.nic}" title="#{bundle.ViewPersonTitle_nic}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_name_With_initials}"/>
+                        <h:outputText value="#{personController.selected.name_With_initials}" title="#{bundle.ViewPersonTitle_name_With_initials}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_permanent_address}"/>
+                        <h:outputText value="#{personController.selected.permanent_address}" title="#{bundle.ViewPersonTitle_permanent_address}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_temporary_address}"/>
+                        <h:outputText value="#{personController.selected.temporary_address}" title="#{bundle.ViewPersonTitle_temporary_address}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_gender}"/>
+                        <h:outputText value="#{personController.selected.gender}" title="#{bundle.ViewPersonTitle_gender}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_birth}"/>
+                        <h:outputText value="#{personController.selected.date_of_birth}" title="#{bundle.ViewPersonTitle_date_of_birth}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_civil_status}"/>
+                        <h:outputText value="#{personController.selected.civil_status}" title="#{bundle.ViewPersonTitle_civil_status}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_telephone}"/>
+                        <h:outputText value="#{personController.selected.telephone}" title="#{bundle.ViewPersonTitle_telephone}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_mobile}"/>
+                        <h:outputText value="#{personController.selected.mobile}" title="#{bundle.ViewPersonTitle_mobile}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_fax}"/>
+                        <h:outputText value="#{personController.selected.fax}" title="#{bundle.ViewPersonTitle_fax}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_email}"/>
+                        <h:outputText value="#{personController.selected.email}" title="#{bundle.ViewPersonTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_position}"/>
+                        <h:outputText value="#{personController.selected.position}" title="#{bundle.ViewPersonTitle_position}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_super_grade}"/>
+                        <h:outputText value="#{personController.selected.date_of_appointment_to_super_grade}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_super_grade}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_special_grade}"/>
+                        <h:outputText value="#{personController.selected.date_of_appointment_to_special_grade}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_special_grade}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_grade_I}"/>
+                        <h:outputText value="#{personController.selected.date_of_appointment_to_grade_I}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_grade_I}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_grade_II}"/>
+                        <h:outputText value="#{personController.selected.date_of_appointment_to_grade_II}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_grade_II}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_grade_III}"/>
+                        <h:outputText value="#{personController.selected.date_of_appointment_to_grade_III}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_grade_III}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_institution}"/>
+                        <h:outputText value="#{personController.selected.institution}" title="#{bundle.ViewPersonTitle_institution}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_department}"/>
+                        <h:outputText value="#{personController.selected.department}" title="#{bundle.ViewPersonTitle_department}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of__permanent_appointment}"/>
+                        <h:outputText value="#{personController.selected.date_of__permanent_appointment}" title="#{bundle.ViewPersonTitle_date_of__permanent_appointment}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_temporary_appointment}"/>
+                        <h:outputText value="#{personController.selected.date_of_temporary_appointment}" title="#{bundle.ViewPersonTitle_date_of_temporary_appointment}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_casual_appointment}"/>
+                        <h:outputText value="#{personController.selected.date_of_casual_appointment}" title="#{bundle.ViewPersonTitle_date_of_casual_appointment}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_wnop_number}"/>
+                        <h:outputText value="#{personController.selected.wnop_number}" title="#{bundle.ViewPersonTitle_wnop_number}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_ebar_I_passed_date}"/>
+                        <h:outputText value="#{personController.selected.ebar_I_passed_date}" title="#{bundle.ViewPersonTitle_ebar_I_passed_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_ebar_II_passed_date}"/>
+                        <h:outputText value="#{personController.selected.ebar_II_passed_date}" title="#{bundle.ViewPersonTitle_ebar_II_passed_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_ebar_III_passed_date}"/>
+                        <h:outputText value="#{personController.selected.ebar_III_passed_date}" title="#{bundle.ViewPersonTitle_ebar_III_passed_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_current_institution}"/>
+                        <h:outputText value="#{personController.selected.date_of_current_institution}" title="#{bundle.ViewPersonTitle_date_of_current_institution}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_previous_Institution}"/>
+                        <h:outputText value="#{personController.selected.previous_Institution}" title="#{bundle.ViewPersonTitle_previous_Institution}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_month_of_increment}"/>
+                        <h:outputText value="#{personController.selected.month_of_increment}" title="#{bundle.ViewPersonTitle_month_of_increment}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_increment}"/>
+                        <h:outputText value="#{personController.selected.date_of_increment}" title="#{bundle.ViewPersonTitle_date_of_increment}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_salary_category}"/>
+                        <h:outputText value="#{personController.selected.salary_category}" title="#{bundle.ViewPersonTitle_salary_category}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_retire}"/>
+                        <h:outputText value="#{personController.selected.date_of_retire}" title="#{bundle.ViewPersonTitle_date_of_retire}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_trasnfer}"/>
+                        <h:outputText value="#{personController.selected.date_of_trasnfer}" title="#{bundle.ViewPersonTitle_date_of_trasnfer}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_transfer_institution}"/>
+                        <h:outputText value="#{personController.selected.transfer_institution}" title="#{bundle.ViewPersonTitle_transfer_institution}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_creater}"/>
+                        <h:outputText value="#{personController.selected.creater}" title="#{bundle.ViewPersonTitle_creater}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_createdAt}"/>
+                        <h:outputText value="#{personController.selected.createdAt}" title="#{bundle.ViewPersonTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_retirer}"/>
+                        <h:outputText value="#{personController.selected.retirer}" title="#{bundle.ViewPersonTitle_retirer}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_retiredAt}"/>
+                        <h:outputText value="#{personController.selected.retiredAt}" title="#{bundle.ViewPersonTitle_retiredAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonLabel_given_names}"/>
+                        <h:outputText value="#{personController.selected.given_names}" title="#{bundle.ViewPersonTitle_given_names}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_family_names}"/>
+                        <h:outputText value="#{personController.selected.family_names}" title="#{bundle.ViewPersonTitle_family_names}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PersonViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

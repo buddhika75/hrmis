@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPersonTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="PersonListForm">
+                <p:panel header="#{bundle.ListPersonTitle}">
+                    <p:dataTable id="datalist" value="#{personController.items}" var="item"
+                                 selectionMode="single" selection="#{personController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_nic}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nic}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_name_With_initials}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name_With_initials}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_permanent_address}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.permanent_address}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_temporary_address}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.temporary_address}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_gender}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gender}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_birth}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_birth}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_civil_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.civil_status}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_telephone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telephone}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_mobile}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mobile}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_fax}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fax}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_position}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.position}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_appointment_to_super_grade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_appointment_to_super_grade}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_appointment_to_special_grade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_appointment_to_special_grade}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_appointment_to_grade_I}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_appointment_to_grade_I}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_appointment_to_grade_II}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_appointment_to_grade_II}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_appointment_to_grade_III}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_appointment_to_grade_III}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_institution}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.institution}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_department}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.department}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of__permanent_appointment}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of__permanent_appointment}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_temporary_appointment}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_temporary_appointment}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_casual_appointment}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_casual_appointment}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_wnop_number}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.wnop_number}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_ebar_I_passed_date}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ebar_I_passed_date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_ebar_II_passed_date}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ebar_II_passed_date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_ebar_III_passed_date}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ebar_III_passed_date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_current_institution}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_current_institution}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_previous_Institution}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.previous_Institution}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_month_of_increment}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.month_of_increment}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_increment}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_increment}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_salary_category}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salary_category}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_retire}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_retire}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_date_of_trasnfer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date_of_trasnfer}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_transfer_institution}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transfer_institution}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_creater}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.creater}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_retirer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retirer}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_retiredAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retiredAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_given_names}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.given_names}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonTitle_family_names}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.family_names}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{personController.prepareCreate}" update=":PersonCreateForm" oncomplete="PF('PersonCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PersonViewForm" oncomplete="PF('PersonViewDialog').show()" disabled="#{empty personController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PersonEditForm" oncomplete="PF('PersonEditDialog').show()" disabled="#{empty personController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{personController.destroy}" update=":growl,datalist" disabled="#{empty personController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

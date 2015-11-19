@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InstitutionEditDlg" widgetVar="InstitutionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditInstitutionTitle}">
+            <h:form id="InstitutionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{institutionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{institutionController.selected.id}" title="#{bundle.EditInstitutionTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{institutionController.selected.name}" title="#{bundle.EditInstitutionTitle_name}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_comments}" for="comments" />
+                        <p:inputTextarea rows="4" cols="30" id="comments" value="#{institutionController.selected.comments}" title="#{bundle.EditInstitutionTitle_comments}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_parentInstitution}" for="parentInstitution" />
+                        <p:selectOneMenu id="parentInstitution" value="#{institutionController.selected.parentInstitution}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
+                                           var="parentInstitutionItem"
+                                           itemValue="#{parentInstitutionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{institutionController.selected.type}" title="#{bundle.EditInstitutionTitle_type}" />
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_creater}" for="creater" />
+                        <p:selectOneMenu id="creater" value="#{institutionController.selected.creater}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="createrItem"
+                                           itemValue="#{createrItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{institutionController.selected.createdAt}" title="#{bundle.EditInstitutionTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_retirer}" for="retirer" />
+                        <p:selectOneMenu id="retirer" value="#{institutionController.selected.retirer}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="retirerItem"
+                                           itemValue="#{retirerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInstitutionLabel_retiredAt}" for="retiredAt" />
+                        <p:calendar id="retiredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{institutionController.selected.retiredAt}" title="#{bundle.EditInstitutionTitle_retiredAt}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{institutionController.update}" value="#{bundle.Save}" update="display,:InstitutionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'InstitutionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InstitutionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
