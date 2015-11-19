@@ -12,8 +12,6 @@
             <h:form id="PersonEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{personController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditPersonLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{personController.selected.id}" title="#{bundle.EditPersonTitle_id}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_name}" for="name" />
                         <p:inputText id="name" value="#{personController.selected.name}" title="#{bundle.EditPersonTitle_name}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_nic}" for="nic" />
@@ -109,28 +107,6 @@
                                            var="transfer_institutionItem"
                                            itemValue="#{transfer_institutionItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditPersonLabel_creater}" for="creater" />
-                        <p:selectOneMenu id="creater" value="#{personController.selected.creater}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
-                                           var="createrItem"
-                                           itemValue="#{createrItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditPersonLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{personController.selected.createdAt}" title="#{bundle.EditPersonTitle_createdAt}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditPersonLabel_retirer}" for="retirer" />
-                        <p:selectOneMenu id="retirer" value="#{personController.selected.retirer}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
-                                           var="retirerItem"
-                                           itemValue="#{retirerItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditPersonLabel_retiredAt}" for="retiredAt" />
-                        <p:calendar id="retiredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{personController.selected.retiredAt}" title="#{bundle.EditPersonTitle_retiredAt}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditPersonLabel_given_names}" for="given_names" />
-                        <p:inputText id="given_names" value="#{personController.selected.given_names}" title="#{bundle.EditPersonTitle_given_names}" />
-                        <p:outputLabel value="#{bundle.EditPersonLabel_family_names}" for="family_names" />
-                        <p:inputText id="family_names" value="#{personController.selected.family_names}" title="#{bundle.EditPersonTitle_family_names}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{personController.update}" value="#{bundle.Save}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PersonEditDialog.hide()"/>

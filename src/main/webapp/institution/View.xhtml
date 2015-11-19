@@ -12,8 +12,6 @@
             <h:form id="InstitutionViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{institutionController.selected != null}">
-                        <h:outputText value="#{bundle.ViewInstitutionLabel_id}"/>
-                        <h:outputText value="#{institutionController.selected.id}" title="#{bundle.ViewInstitutionTitle_id}"/>
                         <h:outputText value="#{bundle.ViewInstitutionLabel_name}"/>
                         <h:outputText value="#{institutionController.selected.name}" title="#{bundle.ViewInstitutionTitle_name}"/>
                         <h:outputText value="#{bundle.ViewInstitutionLabel_comments}"/>
@@ -22,18 +20,6 @@
                         <h:outputText value="#{institutionController.selected.parentInstitution}" title="#{bundle.ViewInstitutionTitle_parentInstitution}"/>
                         <h:outputText value="#{bundle.ViewInstitutionLabel_type}"/>
                         <h:outputText value="#{institutionController.selected.type}" title="#{bundle.ViewInstitutionTitle_type}"/>
-                        <h:outputText value="#{bundle.ViewInstitutionLabel_creater}"/>
-                        <h:outputText value="#{institutionController.selected.creater}" title="#{bundle.ViewInstitutionTitle_creater}"/>
-                        <h:outputText value="#{bundle.ViewInstitutionLabel_createdAt}"/>
-                        <h:outputText value="#{institutionController.selected.createdAt}" title="#{bundle.ViewInstitutionTitle_createdAt}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewInstitutionLabel_retirer}"/>
-                        <h:outputText value="#{institutionController.selected.retirer}" title="#{bundle.ViewInstitutionTitle_retirer}"/>
-                        <h:outputText value="#{bundle.ViewInstitutionLabel_retiredAt}"/>
-                        <h:outputText value="#{institutionController.selected.retiredAt}" title="#{bundle.ViewInstitutionTitle_retiredAt}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="InstitutionViewDialog.hide()"/>
                 </h:panelGroup>

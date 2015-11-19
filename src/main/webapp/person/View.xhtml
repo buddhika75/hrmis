@@ -12,8 +12,6 @@
             <h:form id="PersonViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{personController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPersonLabel_id}"/>
-                        <h:outputText value="#{personController.selected.id}" title="#{bundle.ViewPersonTitle_id}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_name}"/>
                         <h:outputText value="#{personController.selected.name}" title="#{bundle.ViewPersonTitle_name}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_nic}"/>
@@ -114,22 +112,6 @@
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewPersonLabel_transfer_institution}"/>
                         <h:outputText value="#{personController.selected.transfer_institution}" title="#{bundle.ViewPersonTitle_transfer_institution}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_creater}"/>
-                        <h:outputText value="#{personController.selected.creater}" title="#{bundle.ViewPersonTitle_creater}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_createdAt}"/>
-                        <h:outputText value="#{personController.selected.createdAt}" title="#{bundle.ViewPersonTitle_createdAt}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_retirer}"/>
-                        <h:outputText value="#{personController.selected.retirer}" title="#{bundle.ViewPersonTitle_retirer}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_retiredAt}"/>
-                        <h:outputText value="#{personController.selected.retiredAt}" title="#{bundle.ViewPersonTitle_retiredAt}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_given_names}"/>
-                        <h:outputText value="#{personController.selected.given_names}" title="#{bundle.ViewPersonTitle_given_names}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_family_names}"/>
-                        <h:outputText value="#{personController.selected.family_names}" title="#{bundle.ViewPersonTitle_family_names}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="PersonViewDialog.hide()"/>
                 </h:panelGroup>

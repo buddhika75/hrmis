@@ -29,12 +29,6 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPersonTitle_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.name}"/>
@@ -272,46 +266,6 @@
                                 <h:outputText value="#{bundle.ListPersonTitle_transfer_institution}"/>
                             </f:facet>
                             <h:outputText value="#{item.transfer_institution}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonTitle_creater}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.creater}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonTitle_createdAt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.createdAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonTitle_retirer}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.retirer}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonTitle_retiredAt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.retiredAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonTitle_given_names}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.given_names}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonTitle_family_names}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.family_names}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{personController.prepareCreate}" update=":PersonCreateForm" oncomplete="PF('PersonCreateDialog').show()"/>

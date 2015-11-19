@@ -26,22 +26,6 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateInstitutionLabel_type}" for="type" />
                         <p:inputText id="type" value="#{institutionController.selected.type}" title="#{bundle.CreateInstitutionTitle_type}" />
-                        <p:outputLabel value="#{bundle.CreateInstitutionLabel_creater}" for="creater" />
-                        <p:selectOneMenu id="creater" value="#{institutionController.selected.creater}" >
-                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
-                                           var="createrItem"
-                                           itemValue="#{createrItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateInstitutionLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{institutionController.selected.createdAt}" title="#{bundle.EditInstitutionTitle_createdAt}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateInstitutionLabel_retirer}" for="retirer" />
-                        <p:selectOneMenu id="retirer" value="#{institutionController.selected.retirer}" >
-                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
-                                           var="retirerItem"
-                                           itemValue="#{retirerItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateInstitutionLabel_retiredAt}" for="retiredAt" />
-                        <p:calendar id="retiredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{institutionController.selected.retiredAt}" title="#{bundle.EditInstitutionTitle_retiredAt}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{institutionController.create}" value="#{bundle.Save}" update="display,:InstitutionListForm:datalist,:growl" oncomplete="handleSubmit(args,'InstitutionCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="InstitutionCreateDialog.hide()"/>

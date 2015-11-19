@@ -57,34 +57,6 @@
                             </f:facet>
                             <h:outputText value="#{item.type}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInstitutionTitle_creater}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.creater}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInstitutionTitle_createdAt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.createdAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInstitutionTitle_retirer}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.retirer}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInstitutionTitle_retiredAt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.retiredAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{institutionController.prepareCreate}" update=":InstitutionCreateForm" oncomplete="PF('InstitutionCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":InstitutionViewForm" oncomplete="PF('InstitutionViewDialog').show()" disabled="#{empty institutionController.selected}"/>
