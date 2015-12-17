@@ -22,13 +22,17 @@
                         <f:selectItems value="#{personController.itemsAvailableSelectOne}" ></f:selectItems>
                         <f:ajax execute="@this calFd calTd" render="datalist"  listener="#{personLeaveController.listPersonLeaves()}" ></f:ajax>
                     </p:selectOneMenu>
-                    
+
                     <h:outputText value="From" ></h:outputText>
-                    <p:calendar id="calFd" value="#{personLeaveController.fromDate}" pattern="dd MMMM yyyy" ></p:calendar>
+                    <p:calendar id="calFd" value="#{personLeaveController.fromDate}" pattern="dd MMMM yyyy" >
+                        <f:ajax event="dateSelect" execute="@this calFd calTd" render="datalist"  listener="#{personLeaveController.listPersonLeaves()}" ></f:ajax>
+                    </p:calendar>
 
                     <h:outputText value="To" ></h:outputText>
-                    <p:calendar id="calTd" value="#{personLeaveController.toDate}" pattern="dd MMMM yyyy" ></p:calendar>
-                    
+                    <p:calendar id="calTd" value="#{personLeaveController.toDate}" pattern="dd MMMM yyyy" >
+                        <f:ajax event="dateSelect" execute="@this calFd calTd" render="datalist"  listener="#{personLeaveController.listPersonLeaves()}" ></f:ajax>
+                    </p:calendar>
+
                 </p:panelGrid>
 
                 <p:panel header="#{bundle.ListPersonLeaveTitle}">
@@ -45,10 +49,40 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonLeaveTitle_id}"/>
+                                <h:outputText value="From"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                            <h:outputText value="#{item.fromDate}">
+                                <f:convertDateTime pattern="dd MMMM yyyy" ></f:convertDateTime>
+                            </h:outputText>
                         </p:column>
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="To"/>
+                            </f:facet>
+                            <h:outputText value="#{item.toDate}">
+                                <f:convertDateTime pattern="dd MMMM yyyy" ></f:convertDateTime>
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Type"/>
+                            </f:facet>
+                            <h:outputText value="#{item.type}">
+                            </h:outputText>
+                        </p:column>
+                        
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Qyt"/>
+                            </f:facet>
+                            <h:outputText value="#{item.leaveQuentity}">
+                            </h:outputText>
+                        </p:column>
+
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{personLeaveController.prepareCreate}" update=":PersonLeaveCreateForm" oncomplete="PF('PersonLeaveCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PersonLeaveViewForm" oncomplete="PF('PersonLeaveViewDialog').show()" disabled="#{empty personLeaveController.selected}"/>

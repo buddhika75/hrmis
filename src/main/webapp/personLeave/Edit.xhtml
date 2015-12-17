@@ -11,9 +11,20 @@
         <p:dialog id="PersonLeaveEditDlg" widgetVar="PersonLeaveEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPersonLeaveTitle}">
             <h:form id="PersonLeaveEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{personLeaveController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditPersonLeaveLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{personLeaveController.selected.id}" title="#{bundle.EditPersonLeaveTitle_id}" />
+                     <p:panelGrid columns="2" rendered="#{personLeaveController.selected != null}">
+                        <p:outputLabel value="Employee"  />
+                        <p:outputLabel value="#{personLeaveController.selected.person.name}"  />
+                        <p:outputLabel value="From"  />
+                        <p:calendar  value="#{personLeaveController.selected.fromDate}" pattern="dd MMMM yyyy"  />
+                        <p:outputLabel value="To"  />
+                        <p:calendar  value="#{personLeaveController.selected.toDate}" pattern="dd MMMM yyyy" />
+                        <p:outputLabel value="Leave Type"  />
+                        <p:selectOneMenu value="#{personLeaveController.selected.type}" >
+                            <f:selectItem itemLabel="Select Leave Type" ></f:selectItem>
+                            <f:selectItems value="#{enumController.leaveTypes}" ></f:selectItems>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Quentity"  />
+                        <p:inputText value="#{personLeaveController.selected.leaveQuentity}" ></p:inputText>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{personLeaveController.update}" value="#{bundle.Save}" update="display,:PersonLeaveListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonLeaveEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PersonLeaveEditDialog.hide()"/>

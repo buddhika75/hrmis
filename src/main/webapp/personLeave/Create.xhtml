@@ -18,8 +18,8 @@
                         <p:calendar  value="#{personLeaveController.selected.fromDate}" pattern="dd MMMM yyyy" />
                         <p:outputLabel value="To"  />
                         <p:calendar  value="#{personLeaveController.selected.toDate}" pattern="dd MMMM yyyy" />
-                        <p:outputLabel value="To"  />
-                        <p:selectOneMenu value="#{personLeaveController.selected.toDate}" >
+                        <p:outputLabel value="Leave Type"  />
+                        <p:selectOneMenu value="#{personLeaveController.selected.type}" >
                             <f:selectItem itemLabel="Select Leave Type" ></f:selectItem>
                             <f:selectItems value="#{enumController.leaveTypes}" ></f:selectItems>
                         </p:selectOneMenu>

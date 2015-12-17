@@ -60,7 +60,7 @@ public class PersonLeave implements Serializable {
 
     public Date getFromDate() {
         if (fromDate == null) {
-            new Date();
+            fromDate = new Date();
         }
         return fromDate;
     }
@@ -71,7 +71,7 @@ public class PersonLeave implements Serializable {
 
     public Date getToDate() {
         if (toDate == null) {
-            new Date();
+            toDate = new Date();
         }
         return toDate;
     }

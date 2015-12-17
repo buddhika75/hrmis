@@ -45,7 +45,7 @@ public class PersonLeaveController implements Serializable {
                 + " from PersonLeave pl "
                 + " where pl.retired=false "
                 + " and pl.person=:p "
-                + " and ((pl.fromDate < :fd and pl.toDate > :fd) or (pl.fromDate < :fd and pl.toDate > :td)) "
+                + " and ((pl.fromDate > :fd and pl.toDate < :td) or (pl.fromDate < :fd and pl.toDate > :fd) or (pl.fromDate < :td and pl.toDate > :td)) "
                 + " order by pl.fromDate";
         Map m = new HashMap();
         m.put("p", person);
@@ -107,12 +107,13 @@ public class PersonLeaveController implements Serializable {
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PersonLeaveCreated"));
         if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
+            listPersonLeaves();    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PersonLeaveUpdated"));
+        
     }
 
     public void destroy() {

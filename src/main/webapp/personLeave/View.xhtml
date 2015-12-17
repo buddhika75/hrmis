@@ -12,10 +12,53 @@
             <h:form id="PersonLeaveViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{personLeaveController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPersonLeaveLabel_id}"/>
-                        <h:outputText value="#{personLeaveController.selected.id}" title="#{bundle.ViewPersonLeaveTitle_id}"/>
+                        <p:outputLabel value="Employee"  />
+                        <p:outputLabel value="#{personLeaveController.selected.person.name}"  />
+                        <p:outputLabel value="From"  />
+                        <p:outputLabel  value="#{personLeaveController.selected.fromDate}" > 
+                            <f:convertDateTime pattern="dd MMMM yyyy" ></f:convertDateTime>
+                        </p:outputLabel>
+
+                        <p:outputLabel value="To"  />
+                        <p:outputLabel  value="#{personLeaveController.selected.fromDate}" > 
+                            <f:convertDateTime pattern="dd MMMM yyyy" ></f:convertDateTime>
+                        </p:outputLabel>
+
+                        <p:outputLabel value="Leave Type"  />
+                        <p:outputLabel value="#{personLeaveController.selected.type}" >
+                        </p:outputLabel>
+
+                        <p:outputLabel value="Quentity"  />
+                        <p:outputLabel value="#{personLeaveController.selected.leaveQuentity}" ></p:outputLabel>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="PersonLeaveViewDialog.hide()"/>
+
+
+
+                    <table border="1" style="padding: 10px; margin: 2px; width: 100%;">
+                        <tr >
+                            <td colspan="2" style="text-align:center;">SGPT</td>
+
+                        </tr>
+                        <tr>
+                            <td>Newborn</td>
+                            <td>13-45</td>
+                        </tr>
+                        <tr>
+                            <td>infant</td>
+                            <td>13-45</td>
+                        </tr>
+                        <tr>
+                            <td>Men</td>
+                            <td>10-40</td>
+                        </tr>
+                        <tr>
+                            <td>Women</td>
+                            <td>10-40</td>
+                        </tr>
+                    </table>
+
+
                 </h:panelGroup>
             </h:form>
         </p:dialog>
