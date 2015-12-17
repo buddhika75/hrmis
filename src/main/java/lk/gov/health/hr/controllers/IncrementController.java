@@ -6,7 +6,10 @@ import lk.gov.health.hr.controllers.util.JsfUtil.PersistAction;
 import lk.gov.health.hr.facelets.IncrementFacade;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,18 +22,69 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "incrementController")
+
+@ManagedBean(name="incrementController")
 @SessionScoped
 public class IncrementController implements Serializable {
 
-    @EJB
-    private lk.gov.health.hr.facelets.IncrementFacade ejbFacade;
+
+    @EJB private lk.gov.health.hr.facelets.IncrementFacade ejbFacade;
     private List<Increment> items = null;
+    private List<Increment> selectedersonIncrements = null;
     private Increment selected;
 
     public IncrementController() {
     }
+    
+    public void selectedPersonChanged(){
+        fillSelectedPersonIncrements();
+        updateSelectedDetails();
+    }
+    
+    
+    public void updateSelectedDetails(){
+        if(selected ==null || selectedersonIncrements==null || selectedersonIncrements.isEmpty()){
+            return;
+        }
+        Increment lastIncrement = selectedersonIncrements.get(0);
+        
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.MONTH, selected.getPerson().getMonth_of_increment());
+        c.set(Calendar.DATE, selected.getPerson().getDate_of_increment());
+        
+        selected.setIncrement_date(c.getTime());
+        
+        selected.setLast_increment_value(lastIncrement.getIncrement_value());
+        selected.setCurrent_salary(lastIncrement.getSalary_after_increment());
+        selected.setIncrement_value(lastIncrement.getIncrement_value());
+        selected.setSalary_after_increment(selected.getCurrent_salary()+ selected.getIncrement_value());
+        selected.setSalary_category(selected.getPerson().getSalary_category());
+        selected.setSalary_scale(lastIncrement.getSalary_scale());
+        
+        
+    }
+    
+    public void fillSelectedPersonIncrements(){
+        String j;
+        Map m = new HashMap();
+        j = "select i "
+                + " from Increment "
+                + " where i.retired=false "
+                + " and i.person=:p "
+                + " order by i.id desc";
+        selectedersonIncrements = ejbFacade.findBySQL(j, m);
+    }
 
+    public List<Increment> getSelectedersonIncrements() {
+        return selectedersonIncrements;
+    }
+
+    public void setSelectedersonIncrements(List<Increment> selectedersonIncrements) {
+        this.selectedersonIncrements = selectedersonIncrements;
+    }
+
+    
+    
     public Increment getSelected() {
         return selected;
     }
@@ -56,18 +110,18 @@ public class IncrementController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("IncrementCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleIncrement").getString("IncrementCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("IncrementUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleIncrement").getString("IncrementUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("IncrementDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/BundleIncrement").getString("IncrementDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -100,14 +154,15 @@ public class IncrementController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleIncrement").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleIncrement").getString("PersistenceErrorOccured"));
             }
         }
     }
+
 
     public List<Increment> getItemsAvailableSelectMany() {
         return getFacade().findAll();
@@ -117,7 +172,7 @@ public class IncrementController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Increment.class)
+    @FacesConverter(forClass=Increment.class)
     public static class IncrementControllerConverter implements Converter {
 
         @Override
@@ -125,7 +180,7 @@ public class IncrementController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            IncrementController controller = (IncrementController) facesContext.getApplication().getELResolver().
+            IncrementController controller = (IncrementController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "incrementController");
             return controller.getFacade().find(getKey(value));
         }

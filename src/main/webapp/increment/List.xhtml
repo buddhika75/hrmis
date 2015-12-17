@@ -10,12 +10,12 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListIncrementTitle}"></h:outputText>
+            <h:outputText value="#{bundleIncrement.ListIncrementTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
             <h:form id="IncrementListForm">
-                <p:panel header="#{bundle.ListIncrementTitle}">
+                <p:panel header="#{bundleIncrement.ListIncrementTitle}">
                     <p:dataTable id="datalist" value="#{incrementController.items}" var="item"
                                  selectionMode="single" selection="#{incrementController.selected}"
                                  paginator="true"
@@ -29,15 +29,93 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncrementTitle_id}"/>
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_person}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.person}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_increment_date}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.increment_date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_salary_scale}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salary_scale}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_salary_category}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salary_category}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_current_salary}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.current_salary}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_increment_value}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.increment_value}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_salary_after_increment}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salary_after_increment}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_last_increment_value}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.last_increment_value}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_creater}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.creater}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_retirer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retirer}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_retiredAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retiredAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{incrementController.prepareCreate}" update=":IncrementCreateForm" oncomplete="PF('IncrementCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":IncrementViewForm" oncomplete="PF('IncrementViewDialog').show()" disabled="#{empty incrementController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":IncrementEditForm" oncomplete="PF('IncrementEditDialog').show()" disabled="#{empty incrementController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{incrementController.destroy}" update=":growl,datalist" disabled="#{empty incrementController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundleIncrement.Create}" actionListener="#{incrementController.prepareCreate}" update=":IncrementCreateForm" oncomplete="PF('IncrementCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundleIncrement.View}" update=":IncrementViewForm" oncomplete="PF('IncrementViewDialog').show()" disabled="#{empty incrementController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundleIncrement.Edit}" update=":IncrementEditForm" oncomplete="PF('IncrementEditDialog').show()" disabled="#{empty incrementController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundleIncrement.Delete}" actionListener="#{incrementController.destroy}" update=":growl,datalist" disabled="#{empty incrementController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

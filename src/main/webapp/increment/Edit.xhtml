@@ -8,15 +8,54 @@
 
     <ui:composition>
 
-        <p:dialog id="IncrementEditDlg" widgetVar="IncrementEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditIncrementTitle}">
+        <p:dialog id="IncrementEditDlg" widgetVar="IncrementEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleIncrement.EditIncrementTitle}">
             <h:form id="IncrementEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{incrementController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditIncrementLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{incrementController.selected.id}" title="#{bundle.EditIncrementTitle_id}" />
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{incrementController.selected.id}" title="#{bundleIncrement.EditIncrementTitle_id}" />
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_person}" for="person" />
+                        <p:selectOneMenu id="person" value="#{incrementController.selected.person}" >
+                            <f:selectItem itemLabel="#{bundleIncrement.SelectOneMessage}"/>
+                            <f:selectItems value="#{personController.itemsAvailableSelectOne}"
+                                           var="personItem"
+                                           itemValue="#{personItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_increment_date}" for="increment_date" />
+                        <p:calendar id="increment_date" pattern="MM/dd/yyyy" value="#{incrementController.selected.increment_date}" title="#{bundleIncrement.EditIncrementTitle_increment_date}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_salary_scale}" for="salary_scale" />
+                        <p:inputText id="salary_scale" value="#{incrementController.selected.salary_scale}" title="#{bundleIncrement.EditIncrementTitle_salary_scale}" />
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_salary_category}" for="salary_category" />
+                        <p:inputText id="salary_category" value="#{incrementController.selected.salary_category}" title="#{bundleIncrement.EditIncrementTitle_salary_category}" />
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_current_salary}" for="current_salary" />
+                        <p:inputText id="current_salary" value="#{incrementController.selected.current_salary}" title="#{bundleIncrement.EditIncrementTitle_current_salary}" />
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_increment_value}" for="increment_value" />
+                        <p:inputText id="increment_value" value="#{incrementController.selected.increment_value}" title="#{bundleIncrement.EditIncrementTitle_increment_value}" />
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_salary_after_increment}" for="salary_after_increment" />
+                        <p:inputText id="salary_after_increment" value="#{incrementController.selected.salary_after_increment}" title="#{bundleIncrement.EditIncrementTitle_salary_after_increment}" />
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_last_increment_value}" for="last_increment_value" />
+                        <p:inputText id="last_increment_value" value="#{incrementController.selected.last_increment_value}" title="#{bundleIncrement.EditIncrementTitle_last_increment_value}" />
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_creater}" for="creater" />
+                        <p:selectOneMenu id="creater" value="#{incrementController.selected.creater}" >
+                            <f:selectItem itemLabel="#{bundleIncrement.SelectOneMessage}"/>
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="createrItem"
+                                           itemValue="#{createrItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{incrementController.selected.createdAt}" title="#{bundleIncrement.EditIncrementTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_retirer}" for="retirer" />
+                        <p:selectOneMenu id="retirer" value="#{incrementController.selected.retirer}" >
+                            <f:selectItem itemLabel="#{bundleIncrement.SelectOneMessage}"/>
+                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
+                                           var="retirerItem"
+                                           itemValue="#{retirerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleIncrement.EditIncrementLabel_retiredAt}" for="retiredAt" />
+                        <p:calendar id="retiredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{incrementController.selected.retiredAt}" title="#{bundleIncrement.EditIncrementTitle_retiredAt}"  showOn="button"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{incrementController.update}" value="#{bundle.Save}" update="display,:IncrementListForm:datalist,:growl" oncomplete="handleSubmit(args, 'IncrementEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="IncrementEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{incrementController.update}" value="#{bundleIncrement.Save}" update="display,:IncrementListForm:datalist,:growl" oncomplete="handleSubmit(args, 'IncrementEditDialog');"/>
+                    <p:commandButton value="#{bundleIncrement.Cancel}" onclick="IncrementEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

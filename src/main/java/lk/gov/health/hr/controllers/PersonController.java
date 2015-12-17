@@ -6,7 +6,9 @@ import lk.gov.health.hr.controllers.util.JsfUtil.PersistAction;
 import lk.gov.health.hr.facelets.PersonFacade;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +30,20 @@ public class PersonController implements Serializable {
     private List<Person> items = null;
     private Person selected;
 
+    
+    public List<Person> completePerson(String qry) {
+        String j;
+        Map m = new HashMap();
+        j = "select p "
+                + " from Person p "
+                + " where lower(p.name) like :n "
+                + " or p.nic like :i "
+                + " order by p.name";
+        m.put("n", "%" + qry.toLowerCase().trim() + "%");
+        m.put("i", "%" + qry);
+        return ejbFacade.findBySQL(j, m);
+    }
+    
     public PersonController() {
     }
 

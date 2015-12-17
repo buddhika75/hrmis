@@ -8,15 +8,214 @@
 
     <ui:composition>
 
-        <p:dialog id="IncrementCreateDlg" widgetVar="IncrementCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateIncrementTitle}">
+        <p:dialog id="IncrementCreateDlg" widgetVar="IncrementCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleIncrement.CreateIncrementTitle}">
             <h:form id="IncrementCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{incrementController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateIncrementLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{incrementController.selected.id}" title="#{bundle.CreateIncrementTitle_id}" />
+
+                    <p:panelGrid  >
+
+                        <p:row >
+                            <p:column >
+                                <p:panelGrid columns="2" rendered="#{incrementController.selected != null}">
+                                    <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_person}" for="person" />
+                                    <p:autoComplete id="person" value="#{incrementController.selected.person}" 
+                                                    completeMethod="#{personController.completePerson}"
+                                                    var="p" itemLabel="#{p.name}" itemValue="#{p}" forceSelection="true">
+                                        <f:ajax event="itemSelect" execute="@this" render=":#{p:component('gdPerson')}" listener="#{incrementController.selectedPersonChanged}"></f:ajax>
+                                    </p:autoComplete>
+                                </p:panelGrid>
+                            </p:column>
+                        </p:row>
+
+                        <p:row >
+                            <p:column >
+
+
+                                <p:tabView  >
+                                    <p:tab title="Current Increment"  >
+                                        <p:panelGrid columns="2" rendered="#{incrementController.selected != null}">
+                                            <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_increment_date}" for="increment_date" />
+                                            <p:calendar id="increment_date" pattern="MM/dd/yyyy" value="#{incrementController.selected.increment_date}" title="#{bundleIncrement.EditIncrementTitle_increment_date}"  showOn="button"/>
+                                            <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_salary_scale}" for="salary_scale" />
+                                            <p:inputText id="salary_scale" value="#{incrementController.selected.salary_scale}" title="#{bundleIncrement.CreateIncrementTitle_salary_scale}" />
+                                            <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_current_salary}" for="current_salary" />
+                                            <p:inputText id="current_salary" value="#{incrementController.selected.current_salary}" title="#{bundleIncrement.CreateIncrementTitle_current_salary}" />
+                                            <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_increment_value}" for="increment_value" />
+                                            <p:inputText id="increment_value" value="#{incrementController.selected.increment_value}" title="#{bundleIncrement.CreateIncrementTitle_increment_value}" />
+                                            <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_salary_after_increment}" for="salary_after_increment" />
+                                            <p:inputText id="salary_after_increment" value="#{incrementController.selected.salary_after_increment}" title="#{bundleIncrement.CreateIncrementTitle_salary_after_increment}" />
+                                            <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_last_increment_value}" for="last_increment_value" />
+                                            <p:inputText id="last_increment_value" value="#{incrementController.selected.last_increment_value}" title="#{bundleIncrement.CreateIncrementTitle_last_increment_value}" />
+                                        </p:panelGrid>
+                                    </p:tab>
+                                    <p:tab title="Person Details"  >
+                                        <p:panel id="gdPerson"  >
+                                            <p:tabView rendered="#{incrementController.selected.person ne null}"  activeIndex="3">
+                                                <p:tab title="Personal"  >
+
+                                                    <p:panelGrid columns="2" >
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_name}" for="name" />
+                                                        <p:inputText disabled="true"   id="name" value="#{incrementController.selected.person.name}" title="#{bundle.CreatePersonTitle_name}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_nic}" for="nic" />
+                                                        <p:inputText disabled="true"  id="nic" value="#{incrementController.selected.person.nic}" title="#{bundle.CreatePersonTitle_nic}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_name_With_initials}" for="name_With_initials" />
+                                                        <p:inputText disabled="true"  id="name_With_initials" value="#{incrementController.selected.person.name_With_initials}" title="#{bundle.CreatePersonTitle_name_With_initials}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_permanent_address}" for="permanent_address" />
+                                                        <p:inputText disabled="true"  id="permanent_address" value="#{incrementController.selected.person.permanent_address}" title="#{bundle.CreatePersonTitle_permanent_address}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_temporary_address}" for="temporary_address" />
+                                                        <p:inputText disabled="true"  id="temporary_address" value="#{incrementController.selected.person.temporary_address}" title="#{bundle.CreatePersonTitle_temporary_address}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_gender}" for="gender" />
+                                                        <p:selectOneMenu  disabled="true" id="gender" rendered="#{incrementController.selected.person ne null}"
+                                                                          value="#{incrementController.selected.person.gender}"  >
+                                                            <f:selectItem itemLabel="Select Gender" ></f:selectItem>
+                                                            <f:selectItems value="#{enumController.genders}" ></f:selectItems>
+                                                        </p:selectOneMenu>
+
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_birth}" for="date_of_birth" />
+                                                        <p:calendar disabled="true" id="date_of_birth" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_birth}" title="#{bundle.EditPersonTitle_date_of_birth}"  showOn="button"/>
+
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_civil_status}" for="civil_status" />
+                                                        <p:selectOneMenu  disabled="true" id="civil_status" value="#{incrementController.selected.person.civil_status}" rendered="#{incrementController.selected.person ne null}">
+                                                            <f:selectItem itemLabel="Select Civil Status" ></f:selectItem>
+                                                            <f:selectItems value="#{enumController.civilStatuses}" ></f:selectItems>
+                                                        </p:selectOneMenu>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_wnop_number}" for="wnop_number" />
+                                                        <p:inputText disabled="true"  id="wnop_number" value="#{incrementController.selected.person.wnop_number}" title="#{bundle.CreatePersonTitle_wnop_number}" />
+
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_telephone}" for="telephone" />
+                                                        <p:inputText disabled="true"  id="telephone" value="#{incrementController.selected.person.telephone}" title="#{bundle.CreatePersonTitle_telephone}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_mobile}" for="mobile" />
+                                                        <p:inputText disabled="true"  id="mobile" value="#{incrementController.selected.person.mobile}" title="#{bundle.CreatePersonTitle_mobile}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_fax}" for="fax" />
+                                                        <p:inputText disabled="true"  id="fax" value="#{incrementController.selected.person.fax}" title="#{bundle.CreatePersonTitle_fax}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_email}" for="email" />
+                                                        <p:inputText disabled="true"  id="email" value="#{incrementController.selected.person.email}" title="#{bundle.CreatePersonTitle_email}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_institution}" for="institution" />
+                                                        <p:selectOneMenu  disabled="true" id="institution" value="#{incrementController.selected.person.institution}" rendered="#{incrementController.selected.person ne null}">
+                                                            <f:selectItem itemLabel="Select Institution" ></f:selectItem>
+                                                            <f:selectItems value="#{institutionController.institutions}"
+                                                                           var="institutionItem"
+                                                                           itemValue="#{institutionItem}"/>
+                                                        </p:selectOneMenu>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_department}" for="department" />
+                                                        <p:selectOneMenu  disabled="true" id="department" value="#{incrementController.selected.person.department}" rendered="#{incrementController.selected.person ne null}">
+                                                            <f:selectItem itemLabel="Select Department" ></f:selectItem>F
+                                                            <f:selectItems value="#{institutionController.departments}"
+                                                                           var="departmentItem"
+                                                                           itemValue="#{departmentItem}"/>
+                                                        </p:selectOneMenu>
+
+                                                    </p:panelGrid>
+
+                                                </p:tab>
+                                                <p:tab title="Position" >
+                                                    <p:panelGrid columns="2" >
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_position}" for="position" />
+                                                        <p:selectOneMenu  disabled="true" id="position" value="#{incrementController.selected.person.position}" rendered="#{incrementController.selected.person ne null}" >
+                                                            <f:selectItem itemLabel="Select Position" ></f:selectItem>
+                                                            <f:selectItems value="#{itemController.itemsAvailableSelectOne}"
+                                                                           var="positionItem"
+                                                                           itemValue="#{positionItem}"/>
+                                                        </p:selectOneMenu>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_super_grade}" for="date_of_appointment_to_super_grade" />
+                                                        <p:calendar disabled="true" id="date_of_appointment_to_super_grade" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_appointment_to_super_grade}" title="#{bundle.EditPersonTitle_date_of_appointment_to_super_grade}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_special_grade}" for="date_of_appointment_to_special_grade" />
+                                                        <p:calendar disabled="true" id="date_of_appointment_to_special_grade" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_appointment_to_special_grade}" title="#{bundle.EditPersonTitle_date_of_appointment_to_special_grade}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_grade_I}" for="date_of_appointment_to_grade_I" />
+                                                        <p:calendar disabled="true" id="date_of_appointment_to_grade_I" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_appointment_to_grade_I}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_I}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_grade_II}" for="date_of_appointment_to_grade_II" />
+                                                        <p:calendar disabled="true" id="date_of_appointment_to_grade_II" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_appointment_to_grade_II}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_II}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_grade_III}" for="date_of_appointment_to_grade_III" />
+                                                        <p:calendar disabled="true" id="date_of_appointment_to_grade_III" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_appointment_to_grade_III}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_III}"  showOn="button"/>
+
+                                                    </p:panelGrid>
+
+                                                </p:tab>
+                                                <p:tab title="Appointments" >
+
+                                                    <p:panelGrid columns="2" >
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of__permanent_appointment}" for="date_of__permanent_appointment" />
+                                                        <p:calendar disabled="true" id="date_of__permanent_appointment" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of__permanent_appointment}" title="#{bundle.EditPersonTitle_date_of__permanent_appointment}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_temporary_appointment}" for="date_of_temporary_appointment" />
+                                                        <p:calendar disabled="true" id="date_of_temporary_appointment" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_temporary_appointment}" title="#{bundle.EditPersonTitle_date_of_temporary_appointment}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_casual_appointment}" for="date_of_casual_appointment" />
+                                                        <p:calendar disabled="true" id="date_of_casual_appointment" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_casual_appointment}" title="#{bundle.EditPersonTitle_date_of_casual_appointment}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_ebar_I_passed_date}" for="ebar_I_passed_date" />
+                                                        <p:calendar disabled="true" id="ebar_I_passed_date" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.ebar_I_passed_date}" title="#{bundle.EditPersonTitle_ebar_I_passed_date}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_ebar_II_passed_date}" for="ebar_II_passed_date" />
+                                                        <p:calendar disabled="true" id="ebar_II_passed_date" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.ebar_II_passed_date}" title="#{bundle.EditPersonTitle_ebar_II_passed_date}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_ebar_III_passed_date}" for="ebar_III_passed_date" />
+                                                        <p:calendar disabled="true" id="ebar_III_passed_date" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.ebar_III_passed_date}" title="#{bundle.EditPersonTitle_ebar_III_passed_date}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_current_institution}" for="date_of_current_institution" />
+                                                        <p:calendar disabled="true" id="date_of_current_institution" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_current_institution}" title="#{bundle.EditPersonTitle_date_of_current_institution}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_previous_Institution}" for="previous_Institution" />
+                                                        <p:selectOneMenu  disabled="true" id="previous_Institution" value="#{incrementController.selected.person.previous_Institution}" rendered="#{incrementController.selected.person ne null}">
+                                                            <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
+                                                                           var="previous_InstitutionItem"
+                                                                           itemValue="#{previous_InstitutionItem}"/>
+                                                        </p:selectOneMenu>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_retire}" for="date_of_retire" />
+                                                        <p:calendar disabled="true" id="date_of_retire" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_retire}" title="#{bundle.EditPersonTitle_date_of_retire}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_trasnfer}" for="date_of_trasnfer" />
+                                                        <p:calendar disabled="true" id="date_of_trasnfer" pattern="MM/dd/yyyy" value="#{incrementController.selected.person.date_of_trasnfer}" title="#{bundle.EditPersonTitle_date_of_trasnfer}"  showOn="button"/>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_transfer_institution}" for="transfer_institution" />
+                                                        <p:selectOneMenu  disabled="true" id="transfer_institution" value="#{incrementController.selected.person.transfer_institution}" rendered="#{incrementController.selected.person.gender ne null}">
+                                                            <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
+                                                                           var="transfer_institutionItem"
+                                                                           itemValue="#{transfer_institutionItem}"/>
+                                                        </p:selectOneMenu>
+
+                                                    </p:panelGrid>
+
+
+                                                </p:tab>
+                                                <p:tab title="Increment" >
+                                                    <p:panelGrid columns="2" >
+
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_month_of_increment}" for="month_of_increment" />
+                                                        <p:selectOneMenu  disabled="true" id="month_of_increment" value="#{incrementController.selected.person.month_of_increment}" title="#{bundle.CreatePersonTitle_month_of_increment}" >
+                                                            <f:selectItem itemLabel="Select Month" ></f:selectItem>
+                                                            <f:selectItem itemLabel="January" itemValue="0" ></f:selectItem>
+                                                            <f:selectItem itemLabel="February" itemValue="1" ></f:selectItem>
+                                                            <f:selectItem itemLabel="March" itemValue="2" ></f:selectItem>
+                                                            <f:selectItem itemLabel="April" itemValue="3" ></f:selectItem>
+                                                            <f:selectItem itemLabel="May" itemValue="4" ></f:selectItem>
+                                                            <f:selectItem itemLabel="June" itemValue="5" ></f:selectItem>
+                                                            <f:selectItem itemLabel="July" itemValue="6" ></f:selectItem>
+                                                            <f:selectItem itemLabel="August" itemValue="7" ></f:selectItem>
+                                                            <f:selectItem itemLabel="September" itemValue="8" ></f:selectItem>
+                                                            <f:selectItem itemLabel="October" itemValue="9" ></f:selectItem>
+                                                            <f:selectItem itemLabel="November" itemValue="10" ></f:selectItem>
+                                                            <f:selectItem itemLabel="December" itemValue="11" ></f:selectItem>
+                                                        </p:selectOneMenu>
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_increment}" for="date_of_increment" />
+                                                        <p:inputText disabled="true"  id="date_of_increment" value="#{incrementController.selected.person.date_of_increment}" title="#{bundle.CreatePersonTitle_date_of_increment}" />
+                                                        <p:outputLabel value="#{bundle.CreatePersonLabel_salary_category}" for="salary_category" />
+                                                        <p:inputText disabled="true"  id="salary_category" value="#{incrementController.selected.person.salary_category}" title="#{bundle.CreatePersonTitle_salary_category}" />
+
+                                                    </p:panelGrid>
+                                                </p:tab>
+                                            </p:tabView>
+                                        </p:panel>
+                                    </p:tab>
+                                    <p:tab title="Previous Increments" >
+
+                                    </p:tab>
+                                </p:tabView>
+
+
+                            </p:column>
+
+
+                        </p:row>
+
+
+
+
+
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{incrementController.create}" value="#{bundle.Save}" update="display,:IncrementListForm:datalist,:growl" oncomplete="handleSubmit(args,'IncrementCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="IncrementCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{incrementController.create}" value="#{bundleIncrement.Save}" update="display,:IncrementListForm:datalist,:growl" oncomplete="handleSubmit(args,'IncrementCreateDialog');"/>
+                    <p:commandButton value="#{bundleIncrement.Cancel}" onclick="IncrementCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

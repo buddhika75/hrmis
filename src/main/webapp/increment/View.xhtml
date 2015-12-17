@@ -8,14 +8,44 @@
 
     <ui:composition>
 
-        <p:dialog id="IncrementViewDlg" widgetVar="IncrementViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewIncrementTitle}">
+        <p:dialog id="IncrementViewDlg" widgetVar="IncrementViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleIncrement.ViewIncrementTitle}">
             <h:form id="IncrementViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{incrementController.selected != null}">
-                        <h:outputText value="#{bundle.ViewIncrementLabel_id}"/>
-                        <h:outputText value="#{incrementController.selected.id}" title="#{bundle.ViewIncrementTitle_id}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_id}"/>
+                        <h:outputText value="#{incrementController.selected.id}" title="#{bundleIncrement.ViewIncrementTitle_id}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_person}"/>
+                        <h:outputText value="#{incrementController.selected.person}" title="#{bundleIncrement.ViewIncrementTitle_person}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_increment_date}"/>
+                        <h:outputText value="#{incrementController.selected.increment_date}" title="#{bundleIncrement.ViewIncrementTitle_increment_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_salary_scale}"/>
+                        <h:outputText value="#{incrementController.selected.salary_scale}" title="#{bundleIncrement.ViewIncrementTitle_salary_scale}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_salary_category}"/>
+                        <h:outputText value="#{incrementController.selected.salary_category}" title="#{bundleIncrement.ViewIncrementTitle_salary_category}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_current_salary}"/>
+                        <h:outputText value="#{incrementController.selected.current_salary}" title="#{bundleIncrement.ViewIncrementTitle_current_salary}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_increment_value}"/>
+                        <h:outputText value="#{incrementController.selected.increment_value}" title="#{bundleIncrement.ViewIncrementTitle_increment_value}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_salary_after_increment}"/>
+                        <h:outputText value="#{incrementController.selected.salary_after_increment}" title="#{bundleIncrement.ViewIncrementTitle_salary_after_increment}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_last_increment_value}"/>
+                        <h:outputText value="#{incrementController.selected.last_increment_value}" title="#{bundleIncrement.ViewIncrementTitle_last_increment_value}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_creater}"/>
+                        <h:outputText value="#{incrementController.selected.creater}" title="#{bundleIncrement.ViewIncrementTitle_creater}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_createdAt}"/>
+                        <h:outputText value="#{incrementController.selected.createdAt}" title="#{bundleIncrement.ViewIncrementTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_retirer}"/>
+                        <h:outputText value="#{incrementController.selected.retirer}" title="#{bundleIncrement.ViewIncrementTitle_retirer}"/>
+                        <h:outputText value="#{bundleIncrement.ViewIncrementLabel_retiredAt}"/>
+                        <h:outputText value="#{incrementController.selected.retiredAt}" title="#{bundleIncrement.ViewIncrementTitle_retiredAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="IncrementViewDialog.hide()"/>
+                    <p:commandButton value="#{bundleIncrement.Close}" onclick="IncrementViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

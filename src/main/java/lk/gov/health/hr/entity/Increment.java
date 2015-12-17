@@ -56,6 +56,113 @@ public class Increment implements Serializable {
         this.id = id;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Date getIncrement_date() {
+        return increment_date;
+    }
+
+    public void setIncrement_date(Date increment_date) {
+        this.increment_date = increment_date;
+    }
+
+    public String getSalary_scale() {
+        return salary_scale;
+    }
+
+    public void setSalary_scale(String salary_scale) {
+        this.salary_scale = salary_scale;
+    }
+
+    public String getSalary_category() {
+        return salary_category;
+    }
+
+    public void setSalary_category(String salary_category) {
+        this.salary_category = salary_category;
+    }
+
+    public double getCurrent_salary() {
+        return current_salary;
+    }
+
+    public void setCurrent_salary(double current_salary) {
+        this.current_salary = current_salary;
+    }
+
+    public double getIncrement_value() {
+        return increment_value;
+    }
+
+    public void setIncrement_value(double increment_value) {
+        this.increment_value = increment_value;
+    }
+
+    public double getSalary_after_increment() {
+        return salary_after_increment;
+    }
+
+    public void setSalary_after_increment(double salary_after_increment) {
+        this.salary_after_increment = salary_after_increment;
+    }
+
+    public double getLast_increment_value() {
+        return last_increment_value;
+    }
+
+    public void setLast_increment_value(double last_increment_value) {
+        this.last_increment_value = last_increment_value;
+    }
+
+    public WebUser getCreater() {
+        return creater;
+    }
+
+    public void setCreater(WebUser creater) {
+        this.creater = creater;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public boolean isRetired() {
+        return retired;
+    }
+
+    public void setRetired(boolean retired) {
+        this.retired = retired;
+    }
+
+    public WebUser getRetirer() {
+        return retirer;
+    }
+
+    public void setRetirer(WebUser retirer) {
+        this.retirer = retirer;
+    }
+
+    public Date getRetiredAt() {
+        return retiredAt;
+    }
+
+    public void setRetiredAt(Date retiredAt) {
+        this.retiredAt = retiredAt;
+    }
+
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

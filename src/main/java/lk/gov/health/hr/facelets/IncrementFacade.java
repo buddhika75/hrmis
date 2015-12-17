@@ -12,7 +12,7 @@ import lk.gov.health.hr.entity.Increment;
 
 /**
  *
- * @author buddhika
+ * @author pdhs-sp
  */
 @Stateless
 public class IncrementFacade extends AbstractFacade<Increment> {
