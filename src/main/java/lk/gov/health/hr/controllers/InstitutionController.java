@@ -6,7 +6,9 @@ import lk.gov.health.hr.controllers.util.JsfUtil.PersistAction;
 import lk.gov.health.hr.facelets.InstitutionFacade;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import lk.gov.health.hr.enums.InstitutionType;
 
 @ManagedBean(name = "institutionController")
 @SessionScoped
@@ -26,10 +29,57 @@ public class InstitutionController implements Serializable {
     @EJB
     private lk.gov.health.hr.facelets.InstitutionFacade ejbFacade;
     private List<Institution> items = null;
+    private List<Institution> institutions = null;
+    private List<Institution> departments = null;
+    private List<Institution> institutionDepartments = null;
+    
     private Institution selected;
+    
 
     public InstitutionController() {
     }
+
+    public List<Institution> getInstitutions(InstitutionType type) {
+        String j = "select i "
+                + " from Institution i "
+                + " where i.type=:t "
+                + " order by i.name";
+        Map m = new HashMap();
+        m.put("t", type);
+        return ejbFacade.findBySQL(j, m);
+    }
+    
+    public List<Institution> getInstitutions() {
+        if(institutions==null){
+            institutions = getInstitutions(InstitutionType.Institution);
+        }
+        return institutions;
+    }
+
+    public void setInstitutions(List<Institution> institutions) {
+        this.institutions = institutions;
+    }
+
+    public List<Institution> getDepartments() {
+        if(departments==null){
+            departments = getInstitutions(InstitutionType.Unit);
+        }
+        return departments;
+    }
+
+    public void setDepartments(List<Institution> departments) {
+        this.departments = departments;
+    }
+
+    public List<Institution> getInstitutionDepartments() {
+        return institutionDepartments;
+    }
+
+    public void setInstitutionDepartments(List<Institution> institutionDepartments) {
+        this.institutionDepartments = institutionDepartments;
+    }
+    
+    
 
     public Institution getSelected() {
         return selected;
@@ -117,6 +167,8 @@ public class InstitutionController implements Serializable {
         return getFacade().findAll();
     }
 
+    
+    
     @FacesConverter(forClass = Institution.class)
     public static class InstitutionControllerConverter implements Converter {
 

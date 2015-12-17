@@ -12,30 +12,15 @@
             <h:form id="ItemCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{itemController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateItemLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{itemController.selected.id}" title="#{bundle.CreateItemTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateItemLabel_name}" for="name" />
                         <p:inputText id="name" value="#{itemController.selected.name}" title="#{bundle.CreateItemTitle_name}" />
                         <p:outputLabel value="#{bundle.CreateItemLabel_comments}" for="comments" />
                         <p:inputTextarea rows="4" cols="30" id="comments" value="#{itemController.selected.comments}" title="#{bundle.CreateItemTitle_comments}" />
                         <p:outputLabel value="#{bundle.CreateItemLabel_type}" for="type" />
-                        <p:inputText id="type" value="#{itemController.selected.type}" title="#{bundle.CreateItemTitle_type}" />
-                        <p:outputLabel value="#{bundle.CreateItemLabel_creater}" for="creater" />
-                        <p:selectOneMenu id="creater" value="#{itemController.selected.creater}" >
-                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
-                                           var="createrItem"
-                                           itemValue="#{createrItem}"/>
+                        <p:selectOneMenu id="type" value="#{itemController.selected.type}" rendered="#{itemController.selected ne null}">
+                            <f:selectItem itemLabel="Select Type" ></f:selectItem>
+                            <f:selectItems value="#{enumController.itemTypes}" ></f:selectItems>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateItemLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{itemController.selected.createdAt}" title="#{bundle.EditItemTitle_createdAt}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateItemLabel_retirer}" for="retirer" />
-                        <p:selectOneMenu id="retirer" value="#{itemController.selected.retirer}" >
-                            <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"
-                                           var="retirerItem"
-                                           itemValue="#{retirerItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateItemLabel_retiredAt}" for="retiredAt" />
-                        <p:calendar id="retiredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{itemController.selected.retiredAt}" title="#{bundle.EditItemTitle_retiredAt}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{itemController.create}" value="#{bundle.Save}" update="display,:ItemListForm:datalist,:growl" oncomplete="handleSubmit(args,'ItemCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ItemCreateDialog.hide()"/>

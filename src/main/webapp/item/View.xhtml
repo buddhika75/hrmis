@@ -12,26 +12,12 @@
             <h:form id="ItemViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{itemController.selected != null}">
-                        <h:outputText value="#{bundle.ViewItemLabel_id}"/>
-                        <h:outputText value="#{itemController.selected.id}" title="#{bundle.ViewItemTitle_id}"/>
                         <h:outputText value="#{bundle.ViewItemLabel_name}"/>
                         <h:outputText value="#{itemController.selected.name}" title="#{bundle.ViewItemTitle_name}"/>
                         <h:outputText value="#{bundle.ViewItemLabel_comments}"/>
                         <h:outputText value="#{itemController.selected.comments}" title="#{bundle.ViewItemTitle_comments}"/>
                         <h:outputText value="#{bundle.ViewItemLabel_type}"/>
                         <h:outputText value="#{itemController.selected.type}" title="#{bundle.ViewItemTitle_type}"/>
-                        <h:outputText value="#{bundle.ViewItemLabel_creater}"/>
-                        <h:outputText value="#{itemController.selected.creater}" title="#{bundle.ViewItemTitle_creater}"/>
-                        <h:outputText value="#{bundle.ViewItemLabel_createdAt}"/>
-                        <h:outputText value="#{itemController.selected.createdAt}" title="#{bundle.ViewItemTitle_createdAt}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewItemLabel_retirer}"/>
-                        <h:outputText value="#{itemController.selected.retirer}" title="#{bundle.ViewItemTitle_retirer}"/>
-                        <h:outputText value="#{bundle.ViewItemLabel_retiredAt}"/>
-                        <h:outputText value="#{itemController.selected.retiredAt}" title="#{bundle.ViewItemTitle_retiredAt}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ItemViewDialog.hide()"/>
                 </h:panelGroup>
