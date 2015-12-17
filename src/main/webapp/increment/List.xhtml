@@ -27,17 +27,12 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                       
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundleIncrement.ListIncrementTitle_person}"/>
                             </f:facet>
-                            <h:outputText value="#{item.person}"/>
+                            <h:outputText value="#{item.person.name}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -76,40 +71,6 @@
                                 <h:outputText value="#{bundleIncrement.ListIncrementTitle_salary_after_increment}"/>
                             </f:facet>
                             <h:outputText value="#{item.salary_after_increment}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_last_increment_value}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.last_increment_value}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_creater}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.creater}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_createdAt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.createdAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_retirer}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.retirer}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundleIncrement.ListIncrementTitle_retiredAt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.retiredAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundleIncrement.Create}" actionListener="#{incrementController.prepareCreate}" update=":IncrementCreateForm" oncomplete="PF('IncrementCreateDialog').show()"/>

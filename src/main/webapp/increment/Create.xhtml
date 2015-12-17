@@ -21,7 +21,7 @@
                                     <p:autoComplete id="person" value="#{incrementController.selected.person}" 
                                                     completeMethod="#{personController.completePerson}"
                                                     var="p" itemLabel="#{p.name}" itemValue="#{p}" forceSelection="true">
-                                        <f:ajax event="itemSelect" execute="@this" render=":#{p:component('gdPerson')}" listener="#{incrementController.selectedPersonChanged}"></f:ajax>
+                                        <f:ajax event="itemSelect" execute="@this" render=":#{p:component('gdPerson')} :#{p:component('gdIncrement')} :#{p:component('tblPastIncrements')}" listener="#{incrementController.selectedPersonChanged}"></f:ajax>
                                     </p:autoComplete>
                                 </p:panelGrid>
                             </p:column>
@@ -33,7 +33,7 @@
 
                                 <p:tabView  >
                                     <p:tab title="Current Increment"  >
-                                        <p:panelGrid columns="2" rendered="#{incrementController.selected != null}">
+                                        <p:panelGrid columns="2" rendered="#{incrementController.selected != null}" id="gdIncrement">
                                             <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_increment_date}" for="increment_date" />
                                             <p:calendar id="increment_date" pattern="MM/dd/yyyy" value="#{incrementController.selected.increment_date}" title="#{bundleIncrement.EditIncrementTitle_increment_date}"  showOn="button"/>
                                             <p:outputLabel value="#{bundleIncrement.CreateIncrementLabel_salary_scale}" for="salary_scale" />
@@ -199,7 +199,48 @@
                                         </p:panel>
                                     </p:tab>
                                     <p:tab title="Previous Increments" >
-
+                                        <p:dataTable id="tblPastIncrements" value="#{incrementController.selectedersonIncrements}" var="spItem"
+                                                     rowKey="#{spItem.id}"
+                                                     >
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundleIncrement.ListIncrementTitle_increment_date}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{spItem.increment_date}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                </h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundleIncrement.ListIncrementTitle_salary_scale}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{spItem.salary_scale}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundleIncrement.ListIncrementTitle_salary_category}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{spItem.salary_category}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundleIncrement.ListIncrementTitle_current_salary}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{spItem.current_salary}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundleIncrement.ListIncrementTitle_increment_value}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{spItem.increment_value}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundleIncrement.ListIncrementTitle_salary_after_increment}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{spItem.salary_after_increment}"/>
+                                            </p:column>
+                                        </p:dataTable>
                                     </p:tab>
                                 </p:tabView>
 

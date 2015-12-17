@@ -22,56 +22,57 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-
-@ManagedBean(name="incrementController")
+@ManagedBean(name = "incrementController")
 @SessionScoped
 public class IncrementController implements Serializable {
 
-
-    @EJB private lk.gov.health.hr.facelets.IncrementFacade ejbFacade;
+    @EJB
+    private lk.gov.health.hr.facelets.IncrementFacade ejbFacade;
     private List<Increment> items = null;
     private List<Increment> selectedersonIncrements = null;
     private Increment selected;
 
     public IncrementController() {
     }
-    
-    public void selectedPersonChanged(){
+
+    public void selectedPersonChanged() {
         fillSelectedPersonIncrements();
         updateSelectedDetails();
     }
-    
-    
-    public void updateSelectedDetails(){
-        if(selected ==null || selectedersonIncrements==null || selectedersonIncrements.isEmpty()){
+
+    public void updateSelectedDetails() {
+        if (selected == null) {
+            return;
+        } else {
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.MONTH, selected.getPerson().getMonth_of_increment());
+            c.set(Calendar.DATE, selected.getPerson().getDate_of_increment());
+            selected.setSalary_category(selected.getPerson().getSalary_category());
+            selected.setIncrement_date(c.getTime());
+        }
+        if (selectedersonIncrements == null || selectedersonIncrements.isEmpty()) {
             return;
         }
         Increment lastIncrement = selectedersonIncrements.get(0);
-        
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.MONTH, selected.getPerson().getMonth_of_increment());
-        c.set(Calendar.DATE, selected.getPerson().getDate_of_increment());
-        
-        selected.setIncrement_date(c.getTime());
-        
+
         selected.setLast_increment_value(lastIncrement.getIncrement_value());
         selected.setCurrent_salary(lastIncrement.getSalary_after_increment());
         selected.setIncrement_value(lastIncrement.getIncrement_value());
-        selected.setSalary_after_increment(selected.getCurrent_salary()+ selected.getIncrement_value());
-        selected.setSalary_category(selected.getPerson().getSalary_category());
+        selected.setSalary_after_increment(selected.getCurrent_salary() + selected.getIncrement_value());
+
         selected.setSalary_scale(lastIncrement.getSalary_scale());
-        
-        
+
     }
-    
-    public void fillSelectedPersonIncrements(){
+
+    public void fillSelectedPersonIncrements() {
         String j;
         Map m = new HashMap();
         j = "select i "
-                + " from Increment "
+                + " from Increment i"
                 + " where i.retired=false "
-                + " and i.person=:p "
+                + " and i.person=:pe "
                 + " order by i.id desc";
+        m.put("pe", selected.getPerson());
         selectedersonIncrements = ejbFacade.findBySQL(j, m);
     }
 
@@ -83,8 +84,10 @@ public class IncrementController implements Serializable {
         this.selectedersonIncrements = selectedersonIncrements;
     }
 
-    
-    
+    public IncrementFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
     public Increment getSelected() {
         return selected;
     }
@@ -163,7 +166,6 @@ public class IncrementController implements Serializable {
         }
     }
 
-
     public List<Increment> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
@@ -172,7 +174,7 @@ public class IncrementController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass=Increment.class)
+    @FacesConverter(forClass = Increment.class)
     public static class IncrementControllerConverter implements Converter {
 
         @Override
@@ -180,7 +182,7 @@ public class IncrementController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            IncrementController controller = (IncrementController)facesContext.getApplication().getELResolver().
+            IncrementController controller = (IncrementController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "incrementController");
             return controller.getFacade().find(getKey(value));
         }
