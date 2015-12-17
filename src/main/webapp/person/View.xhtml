@@ -10,110 +10,155 @@
 
         <p:dialog id="PersonViewDlg" widgetVar="PersonViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPersonTitle}">
             <h:form id="PersonViewForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{personController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPersonLabel_name}"/>
-                        <h:outputText value="#{personController.selected.name}" title="#{bundle.ViewPersonTitle_name}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_nic}"/>
-                        <h:outputText value="#{personController.selected.nic}" title="#{bundle.ViewPersonTitle_nic}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_name_With_initials}"/>
-                        <h:outputText value="#{personController.selected.name_With_initials}" title="#{bundle.ViewPersonTitle_name_With_initials}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_permanent_address}"/>
-                        <h:outputText value="#{personController.selected.permanent_address}" title="#{bundle.ViewPersonTitle_permanent_address}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_temporary_address}"/>
-                        <h:outputText value="#{personController.selected.temporary_address}" title="#{bundle.ViewPersonTitle_temporary_address}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_gender}"/>
-                        <h:outputText value="#{personController.selected.gender}" title="#{bundle.ViewPersonTitle_gender}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_birth}"/>
-                        <h:outputText value="#{personController.selected.date_of_birth}" title="#{bundle.ViewPersonTitle_date_of_birth}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_civil_status}"/>
-                        <h:outputText value="#{personController.selected.civil_status}" title="#{bundle.ViewPersonTitle_civil_status}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_telephone}"/>
-                        <h:outputText value="#{personController.selected.telephone}" title="#{bundle.ViewPersonTitle_telephone}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_mobile}"/>
-                        <h:outputText value="#{personController.selected.mobile}" title="#{bundle.ViewPersonTitle_mobile}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_fax}"/>
-                        <h:outputText value="#{personController.selected.fax}" title="#{bundle.ViewPersonTitle_fax}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_email}"/>
-                        <h:outputText value="#{personController.selected.email}" title="#{bundle.ViewPersonTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_position}"/>
-                        <h:outputText value="#{personController.selected.position}" title="#{bundle.ViewPersonTitle_position}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_super_grade}"/>
-                        <h:outputText value="#{personController.selected.date_of_appointment_to_super_grade}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_super_grade}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_special_grade}"/>
-                        <h:outputText value="#{personController.selected.date_of_appointment_to_special_grade}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_special_grade}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_grade_I}"/>
-                        <h:outputText value="#{personController.selected.date_of_appointment_to_grade_I}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_grade_I}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_grade_II}"/>
-                        <h:outputText value="#{personController.selected.date_of_appointment_to_grade_II}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_grade_II}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_appointment_to_grade_III}"/>
-                        <h:outputText value="#{personController.selected.date_of_appointment_to_grade_III}" title="#{bundle.ViewPersonTitle_date_of_appointment_to_grade_III}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_institution}"/>
-                        <h:outputText value="#{personController.selected.institution}" title="#{bundle.ViewPersonTitle_institution}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_department}"/>
-                        <h:outputText value="#{personController.selected.department}" title="#{bundle.ViewPersonTitle_department}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of__permanent_appointment}"/>
-                        <h:outputText value="#{personController.selected.date_of__permanent_appointment}" title="#{bundle.ViewPersonTitle_date_of__permanent_appointment}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_temporary_appointment}"/>
-                        <h:outputText value="#{personController.selected.date_of_temporary_appointment}" title="#{bundle.ViewPersonTitle_date_of_temporary_appointment}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_casual_appointment}"/>
-                        <h:outputText value="#{personController.selected.date_of_casual_appointment}" title="#{bundle.ViewPersonTitle_date_of_casual_appointment}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_wnop_number}"/>
-                        <h:outputText value="#{personController.selected.wnop_number}" title="#{bundle.ViewPersonTitle_wnop_number}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_ebar_I_passed_date}"/>
-                        <h:outputText value="#{personController.selected.ebar_I_passed_date}" title="#{bundle.ViewPersonTitle_ebar_I_passed_date}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_ebar_II_passed_date}"/>
-                        <h:outputText value="#{personController.selected.ebar_II_passed_date}" title="#{bundle.ViewPersonTitle_ebar_II_passed_date}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_ebar_III_passed_date}"/>
-                        <h:outputText value="#{personController.selected.ebar_III_passed_date}" title="#{bundle.ViewPersonTitle_ebar_III_passed_date}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_current_institution}"/>
-                        <h:outputText value="#{personController.selected.date_of_current_institution}" title="#{bundle.ViewPersonTitle_date_of_current_institution}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_previous_Institution}"/>
-                        <h:outputText value="#{personController.selected.previous_Institution}" title="#{bundle.ViewPersonTitle_previous_Institution}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_month_of_increment}"/>
-                        <h:outputText value="#{personController.selected.month_of_increment}" title="#{bundle.ViewPersonTitle_month_of_increment}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_increment}"/>
-                        <h:outputText value="#{personController.selected.date_of_increment}" title="#{bundle.ViewPersonTitle_date_of_increment}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_salary_category}"/>
-                        <h:outputText value="#{personController.selected.salary_category}" title="#{bundle.ViewPersonTitle_salary_category}"/>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_retire}"/>
-                        <h:outputText value="#{personController.selected.date_of_retire}" title="#{bundle.ViewPersonTitle_date_of_retire}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_date_of_trasnfer}"/>
-                        <h:outputText value="#{personController.selected.date_of_trasnfer}" title="#{bundle.ViewPersonTitle_date_of_trasnfer}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonLabel_transfer_institution}"/>
-                        <h:outputText value="#{personController.selected.transfer_institution}" title="#{bundle.ViewPersonTitle_transfer_institution}"/>
-                    </p:panelGrid>
+                <h:panelGroup id="display"  >
+
                     <p:commandButton value="#{bundle.Close}" onclick="PersonViewDialog.hide()"/>
+                    <p:tabView >
+                        <p:tab title="Personal"  >
+                                
+                            <p:panelGrid columns="2" >
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_name}" for="name" />
+                                <p:inputText disabled="true"   id="name" value="#{personController.selected.name}" title="#{bundle.CreatePersonTitle_name}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_nic}" for="nic" />
+                                <p:inputText disabled="true"  id="nic" value="#{personController.selected.nic}" title="#{bundle.CreatePersonTitle_nic}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_name_With_initials}" for="name_With_initials" />
+                                <p:inputText disabled="true"  id="name_With_initials" value="#{personController.selected.name_With_initials}" title="#{bundle.CreatePersonTitle_name_With_initials}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_permanent_address}" for="permanent_address" />
+                                <p:inputText disabled="true"  id="permanent_address" value="#{personController.selected.permanent_address}" title="#{bundle.CreatePersonTitle_permanent_address}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_temporary_address}" for="temporary_address" />
+                                <p:inputText disabled="true"  id="temporary_address" value="#{personController.selected.temporary_address}" title="#{bundle.CreatePersonTitle_temporary_address}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_gender}" for="gender" />
+                                <p:selectOneMenu  disabled="true" id="gender" rendered="#{personController.selected ne null}"
+                                                 value="#{personController.selected.gender}"  >
+                                    <f:selectItem itemLabel="Select Gender" ></f:selectItem>
+                                    <f:selectItems value="#{enumController.genders}" ></f:selectItems>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_birth}" for="date_of_birth" />
+                                <p:calendar disabled="true" id="date_of_birth" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_birth}" title="#{bundle.EditPersonTitle_date_of_birth}"  showOn="button"/>
+
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_civil_status}" for="civil_status" />
+                                <p:selectOneMenu  disabled="true" id="civil_status" value="#{personController.selected.civil_status}" rendered="#{personController.selected ne null}">
+                                    <f:selectItem itemLabel="Select Civil Status" ></f:selectItem>
+                                    <f:selectItems value="#{enumController.civilStatuses}" ></f:selectItems>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_wnop_number}" for="wnop_number" />
+                                <p:inputText disabled="true"  id="wnop_number" value="#{personController.selected.wnop_number}" title="#{bundle.CreatePersonTitle_wnop_number}" />
+
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_telephone}" for="telephone" />
+                                <p:inputText disabled="true"  id="telephone" value="#{personController.selected.telephone}" title="#{bundle.CreatePersonTitle_telephone}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_mobile}" for="mobile" />
+                                <p:inputText disabled="true"  id="mobile" value="#{personController.selected.mobile}" title="#{bundle.CreatePersonTitle_mobile}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_fax}" for="fax" />
+                                <p:inputText disabled="true"  id="fax" value="#{personController.selected.fax}" title="#{bundle.CreatePersonTitle_fax}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_email}" for="email" />
+                                <p:inputText disabled="true"  id="email" value="#{personController.selected.email}" title="#{bundle.CreatePersonTitle_email}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_institution}" for="institution" />
+                                <p:selectOneMenu  disabled="true" id="institution" value="#{personController.selected.institution}" rendered="#{personController.selected ne null}">
+                                    <f:selectItem itemLabel="Select Institution" ></f:selectItem>
+                                    <f:selectItems value="#{institutionController.institutions}"
+                                                   var="institutionItem"
+                                                   itemValue="#{institutionItem}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_department}" for="department" />
+                                <p:selectOneMenu  disabled="true" id="department" value="#{personController.selected.department}" rendered="#{personController.selected ne null}">
+                                    <f:selectItem itemLabel="Select Department" ></f:selectItem>F
+                                    <f:selectItems value="#{institutionController.departments}"
+                                                   var="departmentItem"
+                                                   itemValue="#{departmentItem}"/>
+                                </p:selectOneMenu>
+
+                            </p:panelGrid>
+                        
+                        </p:tab>
+                        <p:tab title="Position" >
+                            <p:panelGrid columns="2" >
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_position}" for="position" />
+                                <p:selectOneMenu  disabled="true" id="position" value="#{personController.selected.position}" rendered="#{personController.selected ne null}" >
+                                    <f:selectItem itemLabel="Select Position" ></f:selectItem>
+                                    <f:selectItems value="#{itemController.itemsAvailableSelectOne}"
+                                                   var="positionItem"
+                                                   itemValue="#{positionItem}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_super_grade}" for="date_of_appointment_to_super_grade" />
+                                <p:calendar disabled="true" id="date_of_appointment_to_super_grade" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_appointment_to_super_grade}" title="#{bundle.EditPersonTitle_date_of_appointment_to_super_grade}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_special_grade}" for="date_of_appointment_to_special_grade" />
+                                <p:calendar disabled="true" id="date_of_appointment_to_special_grade" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_appointment_to_special_grade}" title="#{bundle.EditPersonTitle_date_of_appointment_to_special_grade}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_grade_I}" for="date_of_appointment_to_grade_I" />
+                                <p:calendar disabled="true" id="date_of_appointment_to_grade_I" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_appointment_to_grade_I}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_I}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_grade_II}" for="date_of_appointment_to_grade_II" />
+                                <p:calendar disabled="true" id="date_of_appointment_to_grade_II" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_appointment_to_grade_II}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_II}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_grade_III}" for="date_of_appointment_to_grade_III" />
+                                <p:calendar disabled="true" id="date_of_appointment_to_grade_III" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_appointment_to_grade_III}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_III}"  showOn="button"/>
+
+                            </p:panelGrid>
+
+                        </p:tab>
+                        <p:tab title="Appointments" >
+
+                            <p:panelGrid columns="2" >
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of__permanent_appointment}" for="date_of__permanent_appointment" />
+                                <p:calendar disabled="true" id="date_of__permanent_appointment" pattern="MM/dd/yyyy" value="#{personController.selected.date_of__permanent_appointment}" title="#{bundle.EditPersonTitle_date_of__permanent_appointment}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_temporary_appointment}" for="date_of_temporary_appointment" />
+                                <p:calendar disabled="true" id="date_of_temporary_appointment" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_temporary_appointment}" title="#{bundle.EditPersonTitle_date_of_temporary_appointment}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_casual_appointment}" for="date_of_casual_appointment" />
+                                <p:calendar disabled="true" id="date_of_casual_appointment" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_casual_appointment}" title="#{bundle.EditPersonTitle_date_of_casual_appointment}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_ebar_I_passed_date}" for="ebar_I_passed_date" />
+                                <p:calendar disabled="true" id="ebar_I_passed_date" pattern="MM/dd/yyyy" value="#{personController.selected.ebar_I_passed_date}" title="#{bundle.EditPersonTitle_ebar_I_passed_date}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_ebar_II_passed_date}" for="ebar_II_passed_date" />
+                                <p:calendar disabled="true" id="ebar_II_passed_date" pattern="MM/dd/yyyy" value="#{personController.selected.ebar_II_passed_date}" title="#{bundle.EditPersonTitle_ebar_II_passed_date}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_ebar_III_passed_date}" for="ebar_III_passed_date" />
+                                <p:calendar disabled="true" id="ebar_III_passed_date" pattern="MM/dd/yyyy" value="#{personController.selected.ebar_III_passed_date}" title="#{bundle.EditPersonTitle_ebar_III_passed_date}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_current_institution}" for="date_of_current_institution" />
+                                <p:calendar disabled="true" id="date_of_current_institution" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_current_institution}" title="#{bundle.EditPersonTitle_date_of_current_institution}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_previous_Institution}" for="previous_Institution" />
+                                <p:selectOneMenu  disabled="true" id="previous_Institution" value="#{personController.selected.previous_Institution}" rendered="#{personController.selected ne null}">
+                                    <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
+                                                   var="previous_InstitutionItem"
+                                                   itemValue="#{previous_InstitutionItem}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_retire}" for="date_of_retire" />
+                                <p:calendar disabled="true" id="date_of_retire" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_retire}" title="#{bundle.EditPersonTitle_date_of_retire}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_trasnfer}" for="date_of_trasnfer" />
+                                <p:calendar disabled="true" id="date_of_trasnfer" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_trasnfer}" title="#{bundle.EditPersonTitle_date_of_trasnfer}"  showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_transfer_institution}" for="transfer_institution" />
+                                <p:selectOneMenu  disabled="true" id="transfer_institution" value="#{personController.selected.transfer_institution}" rendered="#{personController.selected.gender ne null}">
+                                    <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
+                                                   var="transfer_institutionItem"
+                                                   itemValue="#{transfer_institutionItem}"/>
+                                </p:selectOneMenu>
+
+                            </p:panelGrid>
+
+
+                        </p:tab>
+                        <p:tab title="Increment" >
+                            <p:panelGrid columns="2" >
+
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_month_of_increment}" for="month_of_increment" />
+                                <p:selectOneMenu  disabled="true" id="month_of_increment" value="#{personController.selected.month_of_increment}" title="#{bundle.CreatePersonTitle_month_of_increment}" >
+                                    <f:selectItem itemLabel="Select Month" ></f:selectItem>
+                                    <f:selectItem itemLabel="January" itemValue="0" ></f:selectItem>
+                                    <f:selectItem itemLabel="February" itemValue="1" ></f:selectItem>
+                                    <f:selectItem itemLabel="March" itemValue="2" ></f:selectItem>
+                                    <f:selectItem itemLabel="April" itemValue="3" ></f:selectItem>
+                                    <f:selectItem itemLabel="May" itemValue="4" ></f:selectItem>
+                                    <f:selectItem itemLabel="June" itemValue="5" ></f:selectItem>
+                                    <f:selectItem itemLabel="July" itemValue="6" ></f:selectItem>
+                                    <f:selectItem itemLabel="August" itemValue="7" ></f:selectItem>
+                                    <f:selectItem itemLabel="September" itemValue="8" ></f:selectItem>
+                                    <f:selectItem itemLabel="October" itemValue="9" ></f:selectItem>
+                                    <f:selectItem itemLabel="November" itemValue="10" ></f:selectItem>
+                                    <f:selectItem itemLabel="December" itemValue="11" ></f:selectItem>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_increment}" for="date_of_increment" />
+                                <p:inputText disabled="true"  id="date_of_increment" value="#{personController.selected.date_of_increment}" title="#{bundle.CreatePersonTitle_date_of_increment}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_salary_category}" for="salary_category" />
+                                <p:inputText disabled="true"  id="salary_category" value="#{personController.selected.salary_category}" title="#{bundle.CreatePersonTitle_salary_category}" />
+
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

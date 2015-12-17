@@ -28,7 +28,7 @@
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_temporary_address}" for="temporary_address" />
                                 <p:inputText id="temporary_address" value="#{personController.selected.temporary_address}" title="#{bundle.CreatePersonTitle_temporary_address}" />
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_gender}" for="gender" />
-                                <p:selectOneMenu id="gender" rendered="#{personController.selected.gender ne null}"
+                                <p:selectOneMenu id="gender" rendered="#{personController.selected ne null}"
                                                  value="#{personController.selected.gender}"  >
                                     <f:selectItem itemLabel="Select Gender" ></f:selectItem>
                                     <f:selectItems value="#{enumController.genders}" ></f:selectItems>
@@ -38,10 +38,12 @@
                                 <p:calendar id="date_of_birth" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_birth}" title="#{bundle.EditPersonTitle_date_of_birth}"  showOn="button"/>
 
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_civil_status}" for="civil_status" />
-                                <p:selectOneMenu id="civil_status" value="#{personController.selected.civil_status}" rendered="#{personController.selected.gender ne null}">
+                                <p:selectOneMenu id="civil_status" value="#{personController.selected.civil_status}" rendered="#{personController.selected ne null}">
                                     <f:selectItem itemLabel="Select Civil Status" ></f:selectItem>
-                                    <f:selectItems value="#{enumController.genders}" ></f:selectItems>
+                                    <f:selectItems value="#{enumController.civilStatuses}" ></f:selectItems>
                                 </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_wnop_number}" for="wnop_number" />
+                                <p:inputText id="wnop_number" value="#{personController.selected.wnop_number}" title="#{bundle.CreatePersonTitle_wnop_number}" />
 
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_telephone}" for="telephone" />
                                 <p:inputText id="telephone" value="#{personController.selected.telephone}" title="#{bundle.CreatePersonTitle_telephone}" />
@@ -51,12 +53,28 @@
                                 <p:inputText id="fax" value="#{personController.selected.fax}" title="#{bundle.CreatePersonTitle_fax}" />
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_email}" for="email" />
                                 <p:inputText id="email" value="#{personController.selected.email}" title="#{bundle.CreatePersonTitle_email}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_institution}" for="institution" />
+                                <p:selectOneMenu id="institution" value="#{personController.selected.institution}" rendered="#{personController.selected ne null}">
+                                    <f:selectItem itemLabel="Select Institution" ></f:selectItem>
+                                    <f:selectItems value="#{institutionController.institutions}"
+                                                   var="institutionItem"
+                                                   itemValue="#{institutionItem}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_department}" for="department" />
+                                <p:selectOneMenu id="department" value="#{personController.selected.department}" rendered="#{personController.selected ne null}">
+                                    <f:selectItem itemLabel="Select Department" ></f:selectItem>F
+                                    <f:selectItems value="#{institutionController.departments}"
+                                                   var="departmentItem"
+                                                   itemValue="#{departmentItem}"/>
+                                </p:selectOneMenu>
+
                             </p:panelGrid>
                         </p:tab>
-                        <p:tab title="Professional" >
+                        <p:tab title="Position" >
                             <p:panelGrid columns="2" >
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_position}" for="position" />
-                                <p:selectOneMenu id="position" value="#{personController.selected.position}" rendered="#{personController.selected ne null}"  >
+                                <p:selectOneMenu id="position" value="#{personController.selected.position}" rendered="#{personController.selected ne null}" >
+                                    <f:selectItem itemLabel="Select Position" ></f:selectItem>
                                     <f:selectItems value="#{itemController.itemsAvailableSelectOne}"
                                                    var="positionItem"
                                                    itemValue="#{positionItem}"/>
@@ -71,22 +89,11 @@
                                 <p:calendar id="date_of_appointment_to_grade_II" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_appointment_to_grade_II}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_II}"  showOn="button"/>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_appointment_to_grade_III}" for="date_of_appointment_to_grade_III" />
                                 <p:calendar id="date_of_appointment_to_grade_III" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_appointment_to_grade_III}" title="#{bundle.EditPersonTitle_date_of_appointment_to_grade_III}"  showOn="button"/>
-                                <p:outputLabel value="#{bundle.CreatePersonLabel_institution}" for="institution" />
-                                <p:selectOneMenu id="institution" value="#{personController.selected.institution}" rendered="#{personController.selected.gender ne null}" >
-                                    <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
-                                                   var="institutionItem"
-                                                   itemValue="#{institutionItem}"/>
-                                </p:selectOneMenu>
-                                <p:outputLabel value="#{bundle.CreatePersonLabel_department}" for="department" />
-                                <p:selectOneMenu id="department" value="#{personController.selected.department}" rendered="#{personController.selected.gender ne null}">
-                                    <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
-                                                   var="departmentItem"
-                                                   itemValue="#{departmentItem}"/>
-                                </p:selectOneMenu>
+
                             </p:panelGrid>
 
                         </p:tab>
-                        <p:tab title="Details" >
+                        <p:tab title="Appointments" >
 
                             <p:panelGrid columns="2" >
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of__permanent_appointment}" for="date_of__permanent_appointment" />
@@ -95,8 +102,6 @@
                                 <p:calendar id="date_of_temporary_appointment" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_temporary_appointment}" title="#{bundle.EditPersonTitle_date_of_temporary_appointment}"  showOn="button"/>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_casual_appointment}" for="date_of_casual_appointment" />
                                 <p:calendar id="date_of_casual_appointment" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_casual_appointment}" title="#{bundle.EditPersonTitle_date_of_casual_appointment}"  showOn="button"/>
-                                <p:outputLabel value="#{bundle.CreatePersonLabel_wnop_number}" for="wnop_number" />
-                                <p:inputText id="wnop_number" value="#{personController.selected.wnop_number}" title="#{bundle.CreatePersonTitle_wnop_number}" />
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_ebar_I_passed_date}" for="ebar_I_passed_date" />
                                 <p:calendar id="ebar_I_passed_date" pattern="MM/dd/yyyy" value="#{personController.selected.ebar_I_passed_date}" title="#{bundle.EditPersonTitle_ebar_I_passed_date}"  showOn="button"/>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_ebar_II_passed_date}" for="ebar_II_passed_date" />
@@ -106,17 +111,11 @@
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_current_institution}" for="date_of_current_institution" />
                                 <p:calendar id="date_of_current_institution" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_current_institution}" title="#{bundle.EditPersonTitle_date_of_current_institution}"  showOn="button"/>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_previous_Institution}" for="previous_Institution" />
-                                <p:selectOneMenu id="previous_Institution" value="#{personController.selected.previous_Institution}" rendered="#{personController.selected.gender ne null}">
+                                <p:selectOneMenu id="previous_Institution" value="#{personController.selected.previous_Institution}" rendered="#{personController.selected ne null}">
                                     <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
                                                    var="previous_InstitutionItem"
                                                    itemValue="#{previous_InstitutionItem}"/>
                                 </p:selectOneMenu>
-                                <p:outputLabel value="#{bundle.CreatePersonLabel_month_of_increment}" for="month_of_increment" />
-                                <p:inputText id="month_of_increment" value="#{personController.selected.month_of_increment}" title="#{bundle.CreatePersonTitle_month_of_increment}" />
-                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_increment}" for="date_of_increment" />
-                                <p:inputText id="date_of_increment" value="#{personController.selected.date_of_increment}" title="#{bundle.CreatePersonTitle_date_of_increment}" />
-                                <p:outputLabel value="#{bundle.CreatePersonLabel_salary_category}" for="salary_category" />
-                                <p:inputText id="salary_category" value="#{personController.selected.salary_category}" title="#{bundle.CreatePersonTitle_salary_category}" />
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_retire}" for="date_of_retire" />
                                 <p:calendar id="date_of_retire" pattern="MM/dd/yyyy" value="#{personController.selected.date_of_retire}" title="#{bundle.EditPersonTitle_date_of_retire}"  showOn="button"/>
                                 <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_trasnfer}" for="date_of_trasnfer" />
@@ -131,6 +130,32 @@
                             </p:panelGrid>
 
 
+                        </p:tab>
+                        <p:tab title="Increment" >
+                            <p:panelGrid columns="2" >
+
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_month_of_increment}" for="month_of_increment" />
+                                <p:selectOneMenu id="month_of_increment" value="#{personController.selected.month_of_increment}" title="#{bundle.CreatePersonTitle_month_of_increment}" >
+                                    <f:selectItem itemLabel="Select Month" ></f:selectItem>
+                                    <f:selectItem itemLabel="January" itemValue="0" ></f:selectItem>
+                                    <f:selectItem itemLabel="February" itemValue="1" ></f:selectItem>
+                                    <f:selectItem itemLabel="March" itemValue="2" ></f:selectItem>
+                                    <f:selectItem itemLabel="April" itemValue="3" ></f:selectItem>
+                                    <f:selectItem itemLabel="May" itemValue="4" ></f:selectItem>
+                                    <f:selectItem itemLabel="June" itemValue="5" ></f:selectItem>
+                                    <f:selectItem itemLabel="July" itemValue="6" ></f:selectItem>
+                                    <f:selectItem itemLabel="August" itemValue="7" ></f:selectItem>
+                                    <f:selectItem itemLabel="September" itemValue="8" ></f:selectItem>
+                                    <f:selectItem itemLabel="October" itemValue="9" ></f:selectItem>
+                                    <f:selectItem itemLabel="November" itemValue="10" ></f:selectItem>
+                                    <f:selectItem itemLabel="December" itemValue="11" ></f:selectItem>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_date_of_increment}" for="date_of_increment" />
+                                <p:inputText id="date_of_increment" value="#{personController.selected.date_of_increment}" title="#{bundle.CreatePersonTitle_date_of_increment}" />
+                                <p:outputLabel value="#{bundle.CreatePersonLabel_salary_category}" for="salary_category" />
+                                <p:inputText id="salary_category" value="#{personController.selected.salary_category}" title="#{bundle.CreatePersonTitle_salary_category}" />
+
+                            </p:panelGrid>
                         </p:tab>
                     </p:tabView>
                 </h:panelGroup>
